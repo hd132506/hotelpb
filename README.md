@@ -26,7 +26,7 @@ dotenv 패키지는 가상환경에서 환경변수 설정을 자동화해줌
 ```
 .flaskenv 파일로 들어가 아래 코드 입력 후 저장
 ```
-FLASK_APP=microblog.py
+FLASK_APP=hotelpb.py
 ```
 
 ## 서버 실행 후 접속하기
