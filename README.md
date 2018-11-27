@@ -102,6 +102,15 @@ $ _
 ## Flask Migration
 
 - RDB(MySQL) -> ORM(SQLAlchemy) 전환을 위해 migration이 필요함
+
+첫 설정하기
+
+```shell
+(venv) $ flask db init
+```
+
+
+
 - models.py 수정 후 반드시 실행
 
 ```shell
