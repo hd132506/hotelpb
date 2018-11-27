@@ -11,7 +11,7 @@
   <!-- ========== Css Files ========== -->
   <!-- <link href="static/css/root.css" rel="stylesheet"> -->
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/root.css')}}">
-  
+
   </head>
   <body>
   <!-- Start Page Loading -->
@@ -36,7 +36,7 @@
     <ul class="top-right">
 
 <li class="dropdown link">
-      <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox"><img src="static/img/profileimg.png" alt="img"><b>Han Jeju</b><span class="caret"></span></a>
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox"><img src="static/img/profileimg.png" alt="img"><b>{{ current_user.last_name }} {{ current_user.first_name }}</b><span class="caret"></span></a>
         <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right">
           <li><a href="login_counter.html"><i class="fa falist fa-power-off"></i> Logout</a></li>
                     <!-- 로그인 화면으로 전환 ㄱ-->

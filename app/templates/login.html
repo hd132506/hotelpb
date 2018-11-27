@@ -136,16 +136,26 @@ span.psw {
     <div class="container">
 
     <form  action="" method="post" role="form">
+        {{ form.hidden_tag() }}
         <img src="static/img/pb.png" class="mx-auto d-block" alt="logo" width="300" height="300"><br>
-          <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" id="uname" name="uname">
-
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" id="password" name="password">
-
+        {% with messages = get_flashed_messages() %}
+           {% if messages %}
+           <ul>
+               {% for message in messages %}
+               <div class="alert alert-info">
+                   <strong>Info!</strong> {{ message }}
+               </div>
+               {% endfor %}
+           </ul>
+           {% endif %}
+        {% endwith %}
+          <label for="username"><b>Username</b></label>
+          {{ form.username(placeholder="Enter Username") }}
+          <label for="password"><b>Password</b></label>
+          {{ form.password(placeholder="Enter Password") }}
           <button type="submit">Login</button>
           <label>
-            <input type="checkbox" checked="checked" id="remember" name="remember"> Remember me
+            <input type="checkbox" checked="checked" id="remember_me" name="remember"> Remember me
           </label>
        </form>
     </div>

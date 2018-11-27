@@ -1,52 +1,108 @@
-# hotelpb
-Web-based Hotel database management tool
+## Specification
 
-* 커맨드는 hotelpb 디렉토리에서 실행합니다.
+```
+Python				3.6.4
+pip					18.1
+cryptography  		2.4.2  
+Flask				1.0.2
+Flask-Login 	    0.4.1  
+Flask-Migrate		2.3.0  
+Flask-SQLAlchemy	2.3.2  
+Flask-WTF			0.14.2 
+PyMySQL         	0.9.2  
+SQLALchemy			1.2.14
+Werkzeug			0.14.1
+WTForms         	2.2.1  
+```
 
-## 가상환경 구축하기(선택)
-``` 
+## MySQL 환경 구축
+
+### MySQL 서버 시작/중지하기
+
+```
+$ mysql.server start
+Starting MySQL
+.. SUCCESS! 
+$ mysql.server stop
+Shutting down MySQL
+.. SUCCESS! 
+$ _
+```
+
+### MySQL 접속 후 사용자 생성/권한 부여하기
+
+```shell
+$ sudo mysql
+mysql> create user 'hotel'@'localhost' identified by 'paris';
+mysql> grant all privileges on *.* to 'hotel'@'localhost';
+```
+
+## Python Virtual environment 구축
+
+* 필수는 아니지만 가상환경을 사용하면 패키지를 깔끔하게 관리할 수 있음.
+
+###가상환경 만들기
+
+```shell
 $ python3 -m venv venv
 ```
 
-## 가상환경 활성화/비활성화하기
+* 트러블 슈팅
+
+```shell
+Error: Command '~~' returned non-zero exit status 1
+$ python3 -m venv --without-pip venv
 ```
+
+### 가상환경 활성화/비활성화
+
+* 왼쪽에 가상환경 디렉토리 이름이 뜨면 성공
+
+```shell
 $ source venv/bin/activate
 (venv) $ _
 (venv) $ deactivate
 $ _
 ```
-Windows 버전 활성화
-```
-$ venv\Scripts\activate
-```
-## 가상환경에서 flask 및 dotenv 패키지 설치하고 환경변수 설정하기
-dotenv 패키지는 가상환경에서 환경변수 설정을 자동화해 줍니다.
-```
-(venv) $ pip install flask
-(venv) $ pip install python-dotenv
+
+* Windows 버전 활성화
+
+```powershell
+venv\Scripts\activate.bat
 ```
 
-## dotenv 설정하기
-```
-(venv) $ touch .flaskenv
-```
-.flaskenv 파일로 들어가 아래 코드 입력 후 저장
-```
-FLASK_APP=hotelpb.py
-```
+### 환경변수 설정
 
-## 환경변수 설정 잘 됐는지 확인
 ```
-(venv) $ echo $FLASK_APP
+$ export FLASK_APP=hotelpb.py
+$ echo $FLASK_APP
 hotelpb.py
+$ _
 ```
-* 아무것도 뜨지 않을 경우
+
+
+
+## Flask, 확장기능 설치
+
+```shell
+$ pip install flask
+$ pip install cryptography
+$ pip install pymysql
+$ pip install flask-login
+$ pip install flask-migrate
+$ pip install flask-sqlalchemy
+$ pip install flask-wtf
+$ pip install wtforms
+$ pip install werkzeug
 ```
-(venv) $ export FLASK_APP=hotelpb.py
-(venv) $ echo $FLASK_APP
+
+
+
+## Flask Migration
+
+* RDB(MySQL) -> ORM(SQLAlchemy) 전환을 위해 migration이 필요함
+
 ```
-## 서버 실행 후 접속하기
+
 ```
-(venv) $ flask run
-```
-http://localhost:5000/
+
