@@ -1,8 +1,8 @@
 ## Specification
 
 ```
-Python				3.6.4
-pip					18.1
+Python              3.6.4
+pip                 18.1
 cryptography  		2.4.2  
 Flask				1.0.2
 Flask-Login 	    0.4.1  
@@ -34,7 +34,7 @@ $ _
 ```shell
 $ sudo mysql
 mysql> create user 'team'@'localhost' identified by 'paris';
-mysql> grant all privileges on *.* to 'hotel'@'localhost';
+mysql> grant all privileges on *.* to 'team'@'localhost';
 mysql> 
 ```
 
