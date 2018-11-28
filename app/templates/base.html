@@ -24,7 +24,7 @@
 
     <!-- Start App Logo -->
     <div class="applogo">
-      <a href="index.html" class="logo">DONGHOTEL</a>
+      <a href="{{url_for('index')}}" class="logo">DONGHOTEL</a>
     </div>
     <!-- End App Logo -->
 
@@ -61,10 +61,10 @@
   <li><a href="index.html"><span class="icon color5"><i class="fa fa-home"></i></span>ROOM STATUS</a></li>
   <li><a href="#"><span class="icon color9"><i class="fa fa-th"></i></span>LISTs<span class="caret"></span></a>
     <ul>
-      <li><a href="data-table1.html">RESERVATION LIST</a></li>
-      <li><a href="data-table2.html">ROOM LIST</a></li>
-      <li><a href="data-table3.html">TASK LIST</a></li>
-      <li><a href="data-table4.html">STAFF LIST</a></li>
+      <li><a href="{{url_for('reserve_list')}}">RESERVATION LIST</a></li>
+      <li><a href="{{url_for('room_list')}}">ROOM LIST</a></li>
+      <li><a href="{{url_for('task_list')}}">TASK LIST</a></li>
+      <li><a href="{{url_for('staff_list')}}">STAFF LIST</a></li>
     </ul>
   </li>
 <!--   <li><a href="#"><span class="icon color14"><i class="fa fa-paper-plane-o"></i></span>Pages<span class="caret"></span></a>

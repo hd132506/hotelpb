@@ -8,8 +8,23 @@ from app.models import Employee
 @app.route('/index')
 @login_required
 def index():
-    team = {'name': 'PB'}
-    return render_template('index.html', title='Home', team=team)
+    return render_template('index.html', title='Welcome! DONGHotel')
+
+@app.route('/reservelist')
+def reserve_list():
+    return render_template('reservation_list.html')
+
+@app.route('/roomlist')
+def room_list():
+    return render_template('room_list.html')
+
+@app.route('/tasklist')
+def task_list():
+    return render_template('task.html')
+
+@app.route('/stafflist')
+def staff_list():
+    return render_template('staff.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
