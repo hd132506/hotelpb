@@ -67,6 +67,17 @@
                         <td>X</td>
                         <td>X</td>
                     </tr>
+                    {% for staff in staffs %}
+                    <tr>
+                        <td>{{ staff.id }}</td>
+                        <td>{{staff.first_name}} {{ staff.last_name }}</td>
+                        <td>{{ staff.job }}</td>
+                        <td>{{ staff.phone }}</td>
+                        <td>X</td>
+                        <td>X</td>
+                    </tr>
+                    {% endfor %}
+
                 </tbody>
             </table>
 

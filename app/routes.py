@@ -24,7 +24,9 @@ def task_list():
 
 @app.route('/stafflist')
 def staff_list():
-    return render_template('staff.html')
+    staffs = Employee.query.all()
+
+    return render_template('staff.html', staffs=staffs)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
