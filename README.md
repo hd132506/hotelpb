@@ -148,7 +148,7 @@ db.session.commit()
 ## Flask 서버 실행하기
 
 ```shell
-(venv) $ run flask
+(venv) $ flask run
 ```
 
 http://127.0.0.1:5000
