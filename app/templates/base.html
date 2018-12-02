@@ -58,7 +58,7 @@
 <div class="sidebar clearfix">
 
 <ul class="sidebar-panel nav">
-  <li><a href="index.html"><span class="icon color5"><i class="fa fa-home"></i></span>ROOM STATUS</a></li>
+  <li><a href="{{url_for('index')}}"><span class="icon color5"><i class="fa fa-home"></i></span>ROOM STATUS</a></li>
   <li><a href="#"><span class="icon color9"><i class="fa fa-th"></i></span>LISTs<span class="caret"></span></a>
     <ul>
       <li><a href="{{url_for('reserve_list')}}">RESERVATION LIST</a></li>
@@ -90,7 +90,59 @@
 <div class="content">
 
   {% block content %}{% endblock %}
+<!-- Modals -->
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="Task" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Task Assignment</h4>
+      </div>
+      <div class="modal-body table-responsive">
+        <table id="tasktable" class="table display">
+          <thead>
+            <tr>
+              <th>CheckBox</th>
+              <th>E_ID</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Phone Number</th>
+              <th>On work</th>
+              <th>Foreign Language</th>
+            </tr>
+          </thead>
 
+          <tbody>
+            <tr>
+                <td><input type="checkbox" name="user_CheckBox" ></td>
+                <td>112</td>
+                <td>이아델</td>
+                <td>청소부</td>
+                <td>01022223333</td>
+                <td>O</td>
+                <td>English, Spanish</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="user_CheckBox" ></td>
+                <td>921</td>
+                <td>김쿡</td>
+                <td>요리부</td>
+                <td>01098765432</td>
+                <td>X</td>
+                <td>X</td>
+            </tr>
+           </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default">Assign</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modals -->
 
 <!-- Start Footer -->
 <div class="row footer">

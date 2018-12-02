@@ -73,8 +73,18 @@
                         <td>{{staff.first_name}} {{ staff.last_name }}</td>
                         <td>{{ staff.job }}</td>
                         <td>{{ staff.phone }}</td>
-                        <td>X</td>
-                        <td>X</td>
+                        <td>{% if staff.on_work %}
+                            O
+                            {% else %}
+                            X
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% for l in staff.languages %}
+                                {{ l.lang }}
+                                {% if not loop.last %}, {% endif %}
+                            {% endfor%}
+                        </td>
                     </tr>
                     {% endfor %}
 
