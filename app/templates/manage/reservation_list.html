@@ -1,0 +1,102 @@
+{% extends "manage/base.html" %}
+
+{% block content %}
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+<!-- START CONTAINER -->
+<div class="container-padding container-widget">
+
+    <!-- Start Page header -->
+    <div class="page-header">
+    <h1 class="title">RESERVATION LIST</h1>
+        <ol class="breadcrumb">
+          <li class="active">RESERVATION LIST</li>
+          <li><a href="{{url_for('room_list')}}">ROOM LIST</a></li>
+          <li><a href="{{url_for('task_list')}}">TASK LIST</a></li>
+          <li><a href="{{url_for('staff_list')}}">STAFF LIST</a></li>
+        </ol>
+    </div>
+    <!-- End Page header -->
+
+ <!-- Start Row -->
+ <div class="row">
+
+   <!-- Start Panel -->
+   <div class="col-md-12">
+     <div class="panel panel-default">
+       <div class="panel-title">
+         RESERVATION LIST
+       </div>
+       <div class="panel-body table-responsive">
+
+           <table id="example0" class="table display">
+               <thead>
+                   <tr>
+                       <th>Check-in Date</th>
+                       <th>Room Type</th>
+                       <th>Headcount</th>
+                       <th>RESERVATION NUMBER</th>
+                   </tr>
+               </thead>
+
+               <tfoot>
+                   <tr>
+                       <th>Check-in Date</th>
+                       <th>Room Type</th>
+                       <th>Headcount</th>
+                       <th>RESERVATION NUMBER</th>
+                   </tr>
+               </tfoot>
+
+               <tbody>
+                   <tr id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " wndow.status = '#' " onMouseOut = " window.status = '' ">
+                       <td>2018/12/24</td>
+                       <td>Double</td>
+                       <td>2</td>
+                       <td>10234598760</td>
+                       <script>
+                         document.querySelector('#res_num').onclick = function(){
+                           swal("상세정보", "이름 : 김감귤\n생년월일 : 19810118\n성별 : M\n인원 : 2\n국가 : Republic Of Korea\n체크인 날짜 : 2018/12/24\n체크아웃 날짜 : 2018/12/25\n연락처 : 01023459876\n이메일주소 : KIMTAN0118@parisbaguette.com\n예약 시간 : 2018/12/02 22:16:00\n객실 가격 : 410,000원\n예약번호 : 10234598760\n방 타입 : Double\n방 클래스 : Superior")
+                         };
+                       </script>
+                   </tr>
+                   <tr id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " wndow.status = '#' " onMouseOut = " window.status = '' ">
+<!--                       <a id="res_num2" href="#">
+-->                    <td>2018/12/25</td>
+                       <td>Single</td>
+                       <td>1</td>
+                       <td>10987623450</td>
+                       <!-- </a> -->
+                       <script>
+                         document.querySelector('#res_num2').onclick = function(){
+                           swal("상세정보", "이름 : 김말랭\n생년월일 : 19910228\n성별 : M\n인원 : 1\n국가 : Republic Of Korea\n체크인 날짜 : 2018/12/30\n체크아웃 날짜 : 2018/12/31\n연락처 : 01045678987\n이메일주소 : MALLANG0128@parisbaguette.com\n예약 시간 : 2018/12/05 23:12:00\n객실 가격 : 360,000원\n예약번호 : 10456789870\n방 타입 : Single\n방 클래스 : Superior")
+                         };
+                       </script>
+                   </tr>
+                   <tr id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " wndow.status = '#' " onMouseOut = " window.status = '' ">
+<!--                       <a id="res_num2" href="#">
+-->                    <td>2018/12/25</td>
+                       <td>Single</td>
+                       <td>1</td>
+                       <td>10987623450</td>
+                       <!-- </a> -->
+                       <script>
+                         document.querySelector('#res_num3').onclick = function(){
+                           swal("상세정보", "이름 : 김감귤\n생년월일 : 19810118\n성별 : M\n인원 : 2\n국가 : Republic Of Korea\n체크인 날짜 : 2018/12/24\n체크아웃 날짜 : 2018/12/25\n연락처 : 01023459876\n이메일주소 : KIMTAN0118@parisbaguette.com\n예약 시간 : 2018/12/02 22:16:00\n객실 가격 : 410,000원\n예약번호 : 10234598760\n방 타입 : Double\n방 클래스 : Superior")
+                         };
+                       </script>
+                   </tr>
+               </tbody>
+           </table>
+
+
+       </div>
+
+     </div>
+   </div>
+   <!-- End Panel -->
+ </div>
+ <!-- End Row -->
+</div>
+<!-- END CONTAINER -->
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+{% endblock %}

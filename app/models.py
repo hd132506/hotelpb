@@ -43,27 +43,34 @@ class Room_info(db.Model):
     fee = db.Column(db.Integer)
     capacity = db.Column(db.Integer)
     rooms = db.relationship('Room', backref='room_info')
+    reservations = db.relationship('Reserve', backref='room_info')
 
 class Room(db.Model):
     num = db.Column(db.Integer, primary_key=True)
     room_info_id = db.Column(db.Integer, db.ForeignKey('room_info.id'), nullable=False)
 
-# class Guest(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     first_name = db.Column(db.String(45))
-#     last_name = db.Column(db.String(45), nullable=False, index=True)
-#     birthday = db.Column(db.DateTime)
-#     gender = db.Column(db.String(1))
-#     head_cnt = db.Column(db.Integer, nullable=False)
-#     country_code = db.Column(db.String(3))
-#     check_in_date = db.Column(db.DateTime, nullable=False, index=True)
-#     check_out_date = db.Column(db.DateTime, nullable=False, index=True)
-#     phone = db.Column(db.String(20))
-#     email = db.Column(db.String(50))
-#
-# class Reserve(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     guest_id = db.Column()
+class Guest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(45))
+    last_name = db.Column(db.String(45), nullable=False, index=True)
+    birthday = db.Column(db.Date)
+    gender = db.Column(db.String(1))
+    head_cnt = db.Column(db.Integer, nullable=False)
+    country_code = db.Column(db.String(3))
+    check_in_date = db.Column(db.Date, nullable=False, index=True)
+    check_out_date = db.Column(db.Date, nullable=False, index=True)
+    phone = db.Column(db.String(20))
+    email = db.Column(db.String(50))
+    reserve = db.relationship('Reserve', backref='guest')
+
+class Reserve(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    guest_id = db.Column(db.Integer, db.ForeignKey('guest.id'), nullable=False)
+    room_info_id = db.Column(db.Integer, db.ForeignKey('room_info.id'), nullable=False)
+    reserve_time = db.Column(db.DateTime, index=True)
+    paid = db.Column(db.Boolean)
+
+
 
 
 @login.user_loader
