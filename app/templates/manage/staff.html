@@ -82,7 +82,7 @@
                         <td>
                             {% for l in staff.languages %}
                                 {{ l.lang }}
-                                {% if not loop.last %}, {% endif %}
+                                {%- if not loop.last -%}, {% endif %}
                             {% endfor%}
                         </td>
                     </tr>

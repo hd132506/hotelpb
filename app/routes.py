@@ -54,8 +54,29 @@ def logout():
 
 ##### Routes for Customer part #####
 
-@app.route('/customers')
+@app.route('/customer')
+@app.route('/customer/')
+@app.route('/customer/index')
 def cindex():
     return render_template('customer/index.html')
+@app.route('/customer/room')
+def croom():
+    return render_template('customer/rooms.html')
+
+@app.route('/customer/services')
+def cservice():
+    return render_template('customer/services.html')
+
+@app.route('/customer/about')
+def about():
+    return render_template('customer/about.html')
+
+@app.route('/customer/blog')
+def blog():
+    return render_template('customer/blog.html')
+
+@app.route('/customer/contact')
+def contact():
+    return render_template('customer/contact.html')
 
 ##### End - Routes for Customer part #####
