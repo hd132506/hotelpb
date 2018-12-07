@@ -1,6 +1,9 @@
 from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
+
+######### Employee Part #########
 
 # Helper table for many-to-many relationship
 languages = db.Table('languages', db.Model.metadata,
@@ -35,6 +38,11 @@ class Language(db.Model):
     lang = db.Column(db.String(15))
 
 
+@login.user_loader
+def load_user(id):
+    return Employee.query.get(int(id))
+
+######### Guest Part #########
 
 class Room_info(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -48,6 +56,8 @@ class Room_info(db.Model):
 class Room(db.Model):
     num = db.Column(db.Integer, primary_key=True)
     room_info_id = db.Column(db.Integer, db.ForeignKey('room_info.id'), nullable=False)
+    usuable = db.Column(db.Boolean)
+    stay = db.relationship('Stay', backref='room')
 
 class Guest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -62,17 +72,17 @@ class Guest(db.Model):
     phone = db.Column(db.String(20))
     email = db.Column(db.String(50))
     reserve = db.relationship('Reserve', backref='guest')
+    stay = db.relationship('Stay', backref='guest')
 
 class Reserve(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     guest_id = db.Column(db.Integer, db.ForeignKey('guest.id'), nullable=False)
     room_info_id = db.Column(db.Integer, db.ForeignKey('room_info.id'), nullable=False)
-    reserve_time = db.Column(db.DateTime, index=True)
-    paid = db.Column(db.Boolean)
+    reserve_time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    paid = db.Column(db.Boolean, nullable=False)
 
-
-
-
-@login.user_loader
-def load_user(id):
-    return Employee.query.get(int(id))
+class Stay(db.Model):
+    room_num = db.Column(db.Integer, db.ForeignKey('room.num'), primary_key=True)
+    guest_id = db.Column(db.Integer, db.ForeignKey('guest.id'), primary_key=True)
+    absence = db.Column(db.Boolean)
+    last_cleaning_time = db.Column(db.DateTime, index=True)

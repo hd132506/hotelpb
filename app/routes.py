@@ -13,21 +13,24 @@ def index():
     return render_template('manage/index.html', title='Welcome! DONGHotel')
 
 @app.route('/reservelist')
+@login_required
 def reserve_list():
     return render_template('manage/reservation_list.html')
 
 @app.route('/roomlist')
+@login_required
 def room_list():
     return render_template('manage/room_list.html')
 
 @app.route('/tasklist')
+@login_required
 def task_list():
     return render_template('manage/task.html')
 
 @app.route('/stafflist')
+@login_required
 def staff_list():
     staffs = Employee.query.all()
-
     return render_template('manage/staff.html', staffs=staffs)
 
 @app.route('/login', methods=['GET', 'POST'])

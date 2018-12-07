@@ -2,8 +2,9 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="static/manage/css/bootstrap.css">
-<link rel="stylesheet" href="static/manage/js/bootstrap.js">
+<link rel="stylesheet" href="{{url_for('static', filename='manage/css/bootstrap.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='manage/js/bootstrap/bootstrap.min.js')}}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
