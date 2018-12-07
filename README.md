@@ -123,6 +123,7 @@ $ _
 (venv) $ sudo mysql
 mysql> drop table alembic_version;
 mysql> commit;
+```
 
 
 ## 데이터 추가/삭제하기
