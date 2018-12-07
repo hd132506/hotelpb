@@ -118,6 +118,11 @@ $ _
 (venv) $ flask db upgrade
 ```
 
+- 트러블 슈팅
+```shell
+(venv) $ sudo mysql
+mysql> drop table alembic_version;
+mysql> commit;
 
 
 ## 데이터 추가/삭제하기
