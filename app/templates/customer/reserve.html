@@ -1,0 +1,181 @@
+{% extends "customer/base.html" %}
+
+{% block content %}
+
+<div class="block-31" style="position: relative;">
+    <div class="owl-carousel loop-block-31 ">
+        <div class="block-30 item" style="background-image: url('{{url_for('static', filename='customer/images/bg_2.jpg')}}');"
+             data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-10">
+                        <span class="subheading-sm">Welcome</span>
+                        <h2 class="heading">Enjoy a Luxury Experience</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-30 item" style="background-image: url('{{url_for('static', filename='customer/images/bg_1.jpg')}}');"
+             data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-10">
+                        <span class="subheading-sm">Welcome</span>
+                        <h2 class="heading">Simple &amp; Elegant</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-30 item" style="background-image: url('{{url_for('static', filename='customer/images/bg_3.jpg')}}');"
+             data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-10">
+                        <span class="subheading-sm">Welcome</span>
+                        <h2 class="heading">Food &amp; Drinks</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-12">
+
+            <div class="block-32">
+                <form action="" method="post" role="form">
+                    {{ form.hidden_tag() }}
+                    <div class="row">
+                        <div class="col-md-4 mb-3 mb-lg-0 col-lg-3">
+                            <label for="checkin">Check In</label>
+                            <div class="field-icon-wrap">
+                                <div class="icon"><span class="icon-calendar"></span></div>
+                                {{ form.checkin_date(class='form-control', id='checkin_date') }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3 mb-lg-0 col-lg-3">
+                            <label for="checkin">Check Out</label>
+                            <div class="field-icon-wrap">
+                                <div class="icon"><span class="icon-calendar"></span></div>
+                                {{ form.checkout_date(class='form-control', id='checkout_date') }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3 mb-md-0 col-lg-3">
+                            <div class="row">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label for="checkin">People</label>
+                                    <div class="field-icon-wrap">
+                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                        {{ form.people(class='form-control') }}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 align-self-end">
+                            <button class="btn btn-primary btn-block" type="submit">Check Availabilty</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row site-section">
+        <div class="col-md-12">
+            <div class="row mb-5">
+                <div class="col-md-7 section-heading">
+                    <span class="subheading-sm">Available Rooms</span>
+                    <h2 class="heading">Choose the Rooms</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mb-5">
+            <div class="block-3 d-md-flex">
+                <div class="image" style="background-image: url('{{url_for('static', filename='customer/images/img_1.jpg')}}'); "></div>
+                <div class="text">
+                    {# #}
+                    <h2 class="heading">Bachelor Room</h2>
+                    <div class="price"><sup>$</sup><span class="number">150</span><sub>/per night</sub></div>
+                    <ul class="specs mb-5">
+                        <li><strong>Adults:</strong> 1</li>
+                        <li><strong>Categories:</strong> Single</li>
+                        <li><strong>Facilities:</strong> Closet with hangers, HD flat-screen TV, Telephone</li>
+                        <li><strong>Size:</strong> 20m<sup>2</sup></li>
+                        <li><strong>Bed Type:</strong> One bed</li>
+                    </ul>
+
+                    <p>
+                        <button class="btn btn-primary" data-target="#reserveForm" data-toggle="modal">Book Now</button>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="reserveForm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                    <!-- header title -->
+                    <h4 class="modal-title">Check your personal Information</h4>
+                </div>
+                <!-- body -->
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <form>
+                            <div class="form-group">
+                                <label for="guest_first_name">First name</label>
+                                <input type="text" class="form-control" id="guest_first_name"
+                                       placeholder="first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="guest_last_name">Last name</label>
+                                <input type="text" class="form-control" id="guest_last_name"
+                                       placeholder="last name">
+                            </div>
+                            <div class="form-group">
+                                <label for="guest_birthday">Birthday</label>
+                                <input type="date" class="form-control" id="guest_birthday">
+                            </div>
+                            <div class="form-group">
+                                <label for="guest_phone">Phone Number</label>
+                                <input type="tel" class="form-control" id="guest_phone" placeholder="phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="guest_email">E-Mail</label>
+                                <input type="email" class="form-control" id="guest_email" placeholder="Email">
+                            </div>
+
+                            <label for="checkin">Check Out</label>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary py-3 px-3">Book This Room!</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary py-3 px-3" data-dismiss="modal">
+                                        other
+                                        rooms?
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Footer -->
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

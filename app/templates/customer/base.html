@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bright Hotel - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Dong hotel - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -23,7 +23,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">BrightHotel</a>
+        <a class="navbar-brand" href="index.html">DongHotel</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -35,7 +35,7 @@
                 <li class="nav-item{% if url_for(request.endpoint).endswith('room') %} active{%- endif %}"><a href="{{url_for('croom')}}" class="nav-link">Rooms</a></li>
                 <li class="nav-item{% if url_for(request.endpoint).endswith('services') %} active{%- endif %}"><a href="{{url_for('cservice')}}" class="nav-link">Services</a></li>
                 <li class="nav-item{% if url_for(request.endpoint).endswith('about') %} active{%- endif %}"><a href="{{url_for('about')}}" class="nav-link">About Us</a></li>
-                <li class="nav-item{% if url_for(request.endpoint).endswith('blog') %} active{%- endif %}"><a href="{{url_for('blog')}}" class="nav-link">Blog</a></li>
+                <li class="nav-item{% if url_for(request.endpoint).endswith('reserve') %} active{%- endif %}"><a href="{{url_for('reserve')}}" class="nav-link">Reserve</a></li>
                 <li class="nav-item{% if url_for(request.endpoint).endswith('contact') %} active{%- endif %}"><a href="{{url_for('contact')}}" class="nav-link">Contact</a></li>
             </ul>
         </div>
@@ -53,7 +53,6 @@
                 <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga aliquid. Atque dolore esse
                     veritatis iusto eaque perferendis non dolorem fugiat voluptatibus vitae error ad itaque inventore
                     accusantium tempore dolores sunt.</p>
-                <p><a href="#" class="btn btn-primary px-4">Button</a></p>
             </div>
             <div class="col-md-6 col-lg-4">
                 <h3 class="heading-section">Blog</h3>
