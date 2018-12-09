@@ -17,7 +17,7 @@ class Employee(UserMixin, db.Model):
     last_name = db.Column(db.String(64), index=True)
     job = db.Column(db.String(45), index=True)
     phone = db.Column(db.String(45))
-    on_work = db.Column(db.Boolean)
+    on_work = db.Column(db.Boolean, default=False)
     languages = db.relationship('Language', secondary=languages, lazy='subquery',
         backref=db.backref('employees'))
 
@@ -38,6 +38,7 @@ class Language(db.Model):
     lang = db.Column(db.String(15))
 
 
+
 @login.user_loader
 def load_user(id):
     return Employee.query.get(int(id))
@@ -50,14 +51,14 @@ class Room_info(db.Model):
     room_class = db.Column(db.String(10), nullable=False, index=True)
     fee = db.Column(db.Integer)
     capacity = db.Column(db.Integer)
-    rooms = db.relationship('Room', backref='room_info')
+    rooms = db.relationship('Room', backref='room_info', cascade='all, delete-orphan')
     reservations = db.relationship('Reserve', backref='room_info')
 
 class Room(db.Model):
     num = db.Column(db.Integer, primary_key=True)
     room_info_id = db.Column(db.Integer, db.ForeignKey('room_info.id'), nullable=False)
-    usuable = db.Column(db.Boolean)
-    stay = db.relationship('Stay', backref='room')
+    usuable = db.Column(db.Boolean, default=False)
+    stay = db.relationship('Stay', backref='room', uselist=False)
 
 class Guest(db.Model):
     id = db.Column(db.Integer, primary_key=True)

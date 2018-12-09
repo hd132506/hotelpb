@@ -1,8 +1,9 @@
 from flask import render_template, flash, request, redirect, url_for
-from app import app
-from app.forms import LoginForm
+from app import app, db
+from app.forms import *
 from flask_login import current_user, login_user, login_required, logout_user
-from app.models import Employee
+from app.models import *
+from app.dataParser import parseToDate
 
 
 ##### Routes for Management part #####
@@ -10,7 +11,8 @@ from app.models import Employee
 @app.route('/index')
 @login_required
 def index():
-    return render_template('manage/index.html', title='Welcome! DONGHotel')
+    rooms = Room.query.all()
+    return render_template('manage/index.html', title='Welcome! DONGHotel', rooms=rooms)
 
 @app.route('/reservelist')
 @login_required
@@ -57,11 +59,15 @@ def logout():
 
 ##### Routes for Customer part #####
 
-@app.route('/customer')
-@app.route('/customer/')
-@app.route('/customer/index')
+@app.route('/customer', methods=['GET', 'POST'])
+@app.route('/customer/', methods=['GET', 'POST'])
+@app.route('/customer/index', methods=['GET', 'POST'])
 def cindex():
-    return render_template('customer/index.html')
+    form = DatePickForm(request.form)
+    if form.validate_on_submit():
+        return redirect(url_for('reserve'), code=307)
+    return render_template('customer/index.html', form=form)
+
 @app.route('/customer/room')
 def croom():
     return render_template('customer/rooms.html')
@@ -74,9 +80,17 @@ def cservice():
 def about():
     return render_template('customer/about.html')
 
-@app.route('/customer/blog')
-def blog():
-    return render_template('customer/blog.html')
+@app.route('/customer/reserve', methods=['GET', 'POST'])
+def reserve():
+    form = DatePickForm(request.form)
+    if form.validate_on_submit():
+        print(parseToDate(form.checkin_date.data))
+        checkin_date = parseToDate(form.checkin_date.data)
+        checkout_date = parseToDate(form.checkout_date.data)
+        db.Session.query(Room_info, Room, Reserve).filter(Room_info.capacity >= int(form.people.data))
+
+        return render_template('customer/reserve.html', form=form)
+    return render_template('customer/reserve.html', form=form)
 
 @app.route('/customer/contact')
 def contact():
