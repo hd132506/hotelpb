@@ -4,6 +4,8 @@ from app.forms import *
 from flask_login import current_user, login_user, login_required, logout_user
 from app.models import *
 from app.dataParser import parseToDate
+from datetime import datetime
+from app.DBProcessor import *
 
 
 ##### Routes for Management part #####
@@ -84,13 +86,17 @@ def about():
 def reserve():
     form = DatePickForm(request.form)
     if form.validate_on_submit():
-        print(parseToDate(form.checkin_date.data))
         checkin_date = parseToDate(form.checkin_date.data)
         checkout_date = parseToDate(form.checkout_date.data)
-        db.Session.query(Room_info, Room, Reserve).filter(Room_info.capacity >= int(form.people.data))
+        availRooms, occupiedRooms = availableRooms(checkin_date, checkout_date, int(form.people.data))
+        return render_template('customer/reserve.html', form=form, availRooms=availRooms, occupiedRooms=occupiedRooms)
+    else:
+        availRooms, occupiedRooms = availableRooms(datetime(1900, 1, 1), datetime(3000, 12, 31), 0)
+    return render_template('customer/reserve.html', form=form, availRooms=availRooms, occupiedRooms=occupiedRooms)
 
-        return render_template('customer/reserve.html', form=form)
-    return render_template('customer/reserve.html', form=form)
+@app.route('/customer/request_reservation', methods=['POST'])
+def request_reservation():
+    pass
 
 @app.route('/customer/contact')
 def contact():

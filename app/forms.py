@@ -38,3 +38,6 @@ class DatePickForm(FlaskForm):
 
         # Return true if everything is fine
         return True
+
+class customerInfoForm(FlaskForm):
+    pass
