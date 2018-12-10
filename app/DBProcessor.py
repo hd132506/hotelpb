@@ -13,6 +13,7 @@ def availableRooms(checkin_date, checkout_date, n_people):
             .filter(Reserve.room_info_id == i.Room_info.id)\
             .filter(Guest.id == Reserve.guest_id)\
             .filter(Guest.check_in_date >= checkin_date, Guest.check_in_date <= checkout_date)\
+            .filter(Guest.check_out_date >= checkin_date, Guest.check_out_date <= checkout_date)\
             .first()[0])
 
         occupied_rooms[idx] += db.session.query(db.func.count(Stay.room_num))\
@@ -40,3 +41,30 @@ def make_reservation():
     g.reserve.append(r)
     db.session.add(g)
     db.session.commit()
+
+def add_new_staff():
+    # s = Employee(\
+    #         first_name=,\
+    #         last_name=,\
+    #         job=,\
+    #         phone=,\
+    #         username=,\
+    # )
+    # db.session.add.(s)
+    # db.session.commit()
+    pass
+
+def add_new_task():
+    # t = Task()
+    # db.session.add(t)
+    # db.session.commit()
+    pass
+
+def remove_task():
+    # db.session.delete()
+    # db.session.commit()
+    pass
+
+def assign_staff():
+    db.session.commit()
+    pass

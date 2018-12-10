@@ -11,22 +11,21 @@
     <title>PBL2-paris baguette</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='roomservice/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!--파비콘 삽입-->
-    <link rel="shortcut icon" type="image/css" href="/Users/wishhope/Desktop/startbootstrap-creative-gh-pages/test.ico">
-    <!--<link rel="shortcut icon" type="image/x-icon" href="http://www.example.com/favicon.ico">-->
+
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static', filename='roomservice/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="{{url_for('static', filename='roomservice/vendor/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/creative.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="{{url_for('static', filename='roomservice/css/creative.min.css')}}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='manage/css/bootstrap.css')}}"> -->
     <!--alarm 테스트용-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
@@ -108,8 +107,8 @@
       <div class="container-fluid p-0">
         <div class="row no-gutters model- header popup-gallery">
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt=""> 
+            <a class="portfolio-box" href="{{url_for('static', filename='roomservice/img/portfolio/fullsize/1.jpg')}}">
+              <img class="img-fluid" src="{{url_for('static', filename='roomservice/img/portfolio/thumbnails/1.jpg')}}" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="Beef steak">
@@ -120,8 +119,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
+            <a class="portfolio-box" href="{{url_for('static', filename='roomservice/img/portfolio/fullsize/2.jpg')}}">
+              <img class="img-fluid" src="{{url_for('static', filename='roomservice/img/portfolio/thumbnails/2.jpg')}}" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
@@ -132,8 +131,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
+            <a class="portfolio-box" href="{{url_for('static', filename='roomservice/img/portfolio/fullsize/3.jpg')}}">
+              <img class="img-fluid" src="{{url_for('static', filename='roomservice/img/portfolio/thumbnails/3.jpg')}}" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
@@ -144,8 +143,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
+            <a class="portfolio-box" href="{{url_for('static', filename='roomservice/img/portfolio/fullsize/4.jpg')}}">
+              <img class="img-fluid" src="{{url_for('static', filename='roomservice/img/portfolio/thumbnails/4.jpg')}}" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
@@ -156,8 +155,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
+            <a class="portfolio-box" href="{{url_for('static', filename='roomservice/img/portfolio/fullsize/5.jpg')}}">
+              <img class="img-fluid" src="{{url_for('static', filename='roomservice/img/portfolio/thumbnails/5.jpg')}}" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
@@ -168,8 +167,8 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-              <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
+            <a class="portfolio-box" href="{{url_for('static', filename='roomservice/img/portfolio/fullsize/6.jpg')}}">
+              <img class="img-fluid" src="{{url_for('static', filename='roomservice/img/portfolio/thumbnails/6.jpg')}}" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
@@ -269,7 +268,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 ml-auto text-center">                
+          <div class="col-lg-4 ml-auto text-center">
             <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
             <p>123-456-6789</p>
           </div>
@@ -285,16 +284,16 @@
     </section>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{url_for('static', filename='roomservice/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='roomservice/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="{{url_for('static', filename='roomservice/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{url_for('static', filename='roomservice/vendor/scrollreveal/scrollreveal.min.js')}}"></script>
+    <script src="{{url_for('static', filename='roomservice/vendor/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/creative.min.js"></script>
+    <script src="{{url_for('static', filename='roomservice/js/creative.min.js')}}"></script>
 
 
   </body>

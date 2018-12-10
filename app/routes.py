@@ -123,3 +123,9 @@ def contact():
     return render_template('customer/contact.html')
 
 ##### End - Routes for Customer part #####
+
+
+##### Route for Room service #####
+@app.route('/roomservice')
+def roomservice():
+    return render_template('roomservice/tablet_index.html')
