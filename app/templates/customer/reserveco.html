@@ -1,0 +1,107 @@
+{% extends "customer/base.html" %}
+
+{% block content %}
+
+<div class="block-31" style="position: relative;">
+    <div class="owl-carousel loop-block-31 ">
+        <div class="block-30 item" style="background-image: url('{{url_for('static', filename='customer/images/bg_2.jpg')}}');"
+             data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-10">
+                        <span class="subheading-sm">Welcome</span>
+                        <h2 class="heading">Enjoy a Luxury Experience</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-30 item" style="background-image: url('{{url_for('static', filename='customer/images/bg_1.jpg')}}');"
+             data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-10">
+                        <span class="subheading-sm">Welcome</span>
+                        <h2 class="heading">Simple &amp; Elegant</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-30 item" style="background-image: url('{{url_for('static', filename='customer/images/bg_3.jpg')}}');"
+             data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-10">
+                        <span class="subheading-sm">Welcome</span>
+                        <h2 class="heading">Food &amp; Drinks</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row site-section">
+        <div class="col-md-12">
+            <div class="row mb-5">
+                <div class="col-md-7 section-heading">
+                    <span class="subheading-sm">Reservation Complete</span>
+                    <h2 class="heading">Check Reservation</h2>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>ROOM CLASS</th>
+                        <td>STANDARD</td>
+                    </tr>
+                    <tr>
+                        <th>ROOM TYPE</th>
+                        <td>SINGLE</td>
+                    </tr>                    
+                    <tr>
+                        <th>RESERVATION NO.</th>
+                        <td>10777766660</td>
+                    </tr>
+                    <tr>
+                        <th>CHECK IN DATE</th>
+                        <td>2018/12/24</td>
+                    </tr>                    
+                    <tr>
+                        <th>CHECK OUT DATE</th>
+                        <td>2018/12/25</td>
+                    </tr>
+                    <tr>
+                        <th>NAME</th>
+                        <td>김감귤</td>
+                    </tr>
+                    <tr>
+                        <th>PHONE</th>
+                        <td>01077776666</td>
+                    </tr>
+                    <tr>
+                        <th>E-MAIL</th>
+                        <td>KIMTAN0118@parisbaguette.com</td>
+                    </tr>                                        
+                </tbody>
+            </table>
+            <div style="margin-top:30px;">
+
+
+            If you want modify or cancel the reservation, please contact us. After identification, our staff will help your business.<br>
+            TEL : 031-400-5236<br>
+            SITE : Eng Bldg #4, Rm #402<br>
+            E-MAIL : dhlee72@hanyang.ac.kr
+            </div>
+        </div>
+        
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends "manage/base2.html" %}
+
+{% block content %}
+
+
+  
+
+
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTAINER -->
+<div class="container-padding container-widget">
+
+
+  <!-- Start Row -->
+  <div class="row">
+
+    <!-- Start Panel -->
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body table-responsive">
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <td class="text-center">Finished</td>
+                <td>Done</td>
+                <td>Order ID</td>
+                <td>Product</td>
+                <td>Time</td>
+                <td>Order Note</td>
+              </tr>
+            </thead>
+            <tbody>
+              <form>
+              <tr>
+                <td class="text-center"><div class="checkbox margin-t-0"><input id="checkbox1"type="checkbox" /disabled><label for="checkbox1"></label></div></td>
+                <td><button type="submit" onclick="enableShadowButton1()" class="btn btn-rounded btn-warning">Done</button></td>
+                <td># <b>9652</b></td>
+                <td>Modern Gaming Laptop</td>
+                <td>12/10/2015</td>
+                <td>As we got further and further away, it [the Earth] diminished in size. <br>Finally it shrank to the size of a marble, the most beautiful you can imagine.</td>
+              </tr>
+              </form>
+
+              <form>
+              <tr>
+                <td class="text-center"><div class="checkbox margin-t-0"><input id="checkbox2" type="checkbox" /disabled><label for="checkbox2"></label></div></td>
+                <td><button type="submit" onclick="enableShadowButton2()"class="btn btn-rounded btn-warning">Done</button></td>
+                <td># <b>1963</b></td>
+                <td>New Season Jacket</td>
+                <td>12/10/2015</td>
+                <td>As we got further and further away, it [the Earth] diminished in size. <br>Finally it shrank to the size of a marble, the most beautiful you can imagine.</td>
+              </tr>
+              </form>
+
+              <form>
+              <tr>
+                <td class="text-center"><div class="checkbox margin-t-0"><input id="checkbox3" type="checkbox" /disabled><label for="checkbox3"></label></div></td>
+                <td><button type="submit" onclick="enableShadowButton3()"class="btn btn-rounded btn-warning">Done</button></td>
+                <td># <b>9652</b></td>
+                <td>IO Mouse</td>
+                <td>12/10/2015</td>
+                <td>As we got further and further away, it [the Earth] diminished in size. <br>Finally it shrank to the size of a marble, the most beautiful you can imagine.</td>
+              </tr>
+              </form>
+
+              <form>
+              <tr>
+                <td class="text-center"><div class="checkbox margin-t-0"><input id="checkbox4" type="checkbox" /disabled><label for="checkbox4"></label></div></td>
+                <td><button type="submit" onclick="enableShadowButton4()"class="btn btn-rounded btn-warning">Done</button></td>
+                <td># <b>9651</b></td>
+                <td>Doe Bike</td>
+                <td>12/10/2015</td>
+                <td>As we got further and further away, it [the Earth] diminished in size. <br>Finally it shrank to the size of a marble, the most beautiful you can imagine.</td>
+              </tr>
+              </form>
+            </tbody>
+          </table>
+<!--Done 버튼 눌렀을 때 체크박스에 체크 되고 더 손 못대게 하는 것-->
+          <script>
+            function enableShadowButton1(){
+              document.getElementById('checkbox1').checked=true;
+            }
+            function enableShadowButton2() {
+              document.getElementById('checkbox2').checked=true;
+            }
+            function enableShadowButton3() {
+              document.getElementById('checkbox3').checked=true;
+            }
+            function enableShadowButton4() {
+              document.getElementById('checkbox4').checked=true;
+            }
+            function shadowFunction(){
+              if((document.getElementById("c1").checked) &&
+              (document.getElementById("c2").checked) &&
+              (document.getElementById("c3").checked) &&
+              (document.getElementById("c4").checked) &&
+              (document.getElementById("c5").checked))
+              { 
+                   document.getElementById("shadowbutton").disabled=false;
+                }
+              }
+                  
+            
+          </script>
+
+        </div>
+
+      </div>
+    </div>
+    <!-- End Panel -->
+
+
+
+    <!-- Start Panel -->
+
+    <!-- End Panel -->
+
+
+
+  </div>
+  <!-- End Row -->
+
+
+
+
+
+
+</div>
+<!-- END CONTAINER -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+
+<!-- Start Footer -->
+<div class="row footer">
+  <div class="col-md-6 text-left">
+  Copyright &copy; 2016 <a href="#" target="_blank">ThemesGround</a> All rights reserved.
+  </div>
+  <div class="col-md-6 text-right">
+    Design and Developed by <a href="#" target="_blank">ThemesGround</a>
+  </div> 
+</div>
+<!-- End Footer -->
+
+
+</div>
+<!-- End Content -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- END SIDEPANEL -->
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+
+{% endblock %}
+{% block addition %}
+<!-- ================================================
+jQuery Library
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/jquery.min.js')}}"></script>
+
+<!-- ================================================
+Bootstrap Core JavaScript File
+================================================ -->
+<script src="{{url_for('static', filename='manage/js/bootstrap/bootstrap.min.js')}}"></script>
+
+<!-- ================================================
+Plugin.js - Some Specific JS codes for Plugin Settings
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/plugins.js')}}"></script>
+
+<!--==================
+이게 눌렀을때 사라지게하는 js
+======================-->
+<script src="{{url_for('static', filename='manage/js/Modern-alert/main.js')}}"></script>
+<!--===================================
+  자바 스크립트 (finish 눌렀을때 hover 뜨는거 )
+  <script>
+                    document.querySelector('#finished').onclick = function(){
+                      swal("Good job!", "Well done!", "success")
+                    }; 
+                  </script>
+  어디에선가 쓰일 것 같음
+  ====================================-->
+  <!--이거 버튼 누르면 체크 박스 선택 못하게되는거 -->
+  <script src="{{url_for('static', filename='manage/js/script.js')}}"></script>
+
+{% endblock %}

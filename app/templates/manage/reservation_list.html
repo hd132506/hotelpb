@@ -23,14 +23,16 @@
    <!-- Start Panel -->
    <div class="col-md-12">
      <div class="panel panel-default">
+      <form>
        <div class="panel-title">
-         RESERVATION LIST
-       </div>
+          RESERVATION LIST<button href="#" type="submit" style="float:right; margin-left: 10px;" class="btn"><i class="fa fa-trash"></i>Remove</button>><a data-toggle="modal" data-target="#reserveModal" href="#" style ="float:right;" class="btn btn-option2"><i class="fa fa-plus"></i>RESERVATION</a>
+        </div>
        <div class="panel-body table-responsive">
 
            <table id="example0" class="table display">
                <thead>
                    <tr>
+                       <th>CheckBox</th>
                        <th>Check-in Date</th>
                        <th>Room Type</th>
                        <th>Headcount</th>
@@ -40,6 +42,7 @@
 
                <tfoot>
                    <tr>
+                       <th>CheckBox</th>
                        <th>Check-in Date</th>
                        <th>Room Type</th>
                        <th>Headcount</th>
@@ -48,37 +51,37 @@
                </tfoot>
 
                <tbody>
-                   <tr id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " wndow.status = '#' " onMouseOut = " window.status = '' ">
-                       <td>2018/12/24</td>
-                       <td>Double</td>
-                       <td>2</td>
-                       <td>10234598760</td>
+                   <tr>
+                       <td><input type="checkbox" name="user_CheckBox" ></td>
+                       <td id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">2018/12/24</td>
+                       <td id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">Double</td>
+                       <td id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">2</td>
+                       <td id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">10234598760</td>
                        <script>
                          document.querySelector('#res_num').onclick = function(){
                            swal("상세정보", "이름 : 김감귤\n생년월일 : 19810118\n성별 : M\n인원 : 2\n국가 : Republic Of Korea\n체크인 날짜 : 2018/12/24\n체크아웃 날짜 : 2018/12/25\n연락처 : 01023459876\n이메일주소 : KIMTAN0118@parisbaguette.com\n예약 시간 : 2018/12/02 22:16:00\n객실 가격 : 410,000원\n예약번호 : 10234598760\n방 타입 : Double\n방 클래스 : Superior")
                          };
                        </script>
                    </tr>
-                   <tr id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " wndow.status = '#' " onMouseOut = " window.status = '' ">
-<!--                       <a id="res_num2" href="#">
--->                    <td>2018/12/25</td>
-                       <td>Single</td>
-                       <td>1</td>
-                       <td>10987623450</td>
-                       <!-- </a> -->
+                   <tr>
+                       <td><input type="checkbox" name="user_CheckBox" ></td>
+                       <td id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">2018/12/25</td>
+                       <td id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">Single</td>
+                       <td id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">1</td>
+                       <td id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">10987623450</td>
                        <script>
                          document.querySelector('#res_num2').onclick = function(){
                            swal("상세정보", "이름 : 김말랭\n생년월일 : 19910228\n성별 : M\n인원 : 1\n국가 : Republic Of Korea\n체크인 날짜 : 2018/12/30\n체크아웃 날짜 : 2018/12/31\n연락처 : 01045678987\n이메일주소 : MALLANG0128@parisbaguette.com\n예약 시간 : 2018/12/05 23:12:00\n객실 가격 : 360,000원\n예약번호 : 10456789870\n방 타입 : Single\n방 클래스 : Superior")
                          };
                        </script>
                    </tr>
-                   <tr id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " wndow.status = '#' " onMouseOut = " window.status = '' ">
-<!--                       <a id="res_num2" href="#">
--->                    <td>2018/12/25</td>
-                       <td>Single</td>
-                       <td>1</td>
-                       <td>10987623450</td>
-                       <!-- </a> -->
+                   <tr>
+                       <td><input type="checkbox" name="user_CheckBox" ></td>
+                       <td id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">2018/12/25</td>
+                       <td id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">Single</td>
+                       <td id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">1</td>
+                       <td id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">10987623450</td>
+
                        <script>
                          document.querySelector('#res_num3').onclick = function(){
                            swal("상세정보", "이름 : 김감귤\n생년월일 : 19810118\n성별 : M\n인원 : 2\n국가 : Republic Of Korea\n체크인 날짜 : 2018/12/24\n체크아웃 날짜 : 2018/12/25\n연락처 : 01023459876\n이메일주소 : KIMTAN0118@parisbaguette.com\n예약 시간 : 2018/12/02 22:16:00\n객실 가격 : 410,000원\n예약번호 : 10234598760\n방 타입 : Double\n방 클래스 : Superior")
@@ -90,7 +93,7 @@
 
 
        </div>
-
+      </form>
      </div>
    </div>
    <!-- End Panel -->
@@ -102,10 +105,11 @@
 {% endblock %}
 
 {% block addition %}
+ <link rel="stylesheet" href="{{url_for('static', filename='manage/css/plugin/date-range-picker/daterangepicker-bs3.css')}}">
 <!-- ================================================
 jQuery Library
 ================================================ -->
-<script type="text/javascript" src="{{url_for('static', filename='manage/js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/jquery.min.js')}}"></script> 
 
 <!-- ================================================
 Bootstrap Core JavaScript File
@@ -118,11 +122,34 @@ Plugin.js - Some Specific JS codes for Plugin Settings
 <script type="text/javascript" src="{{url_for('static', filename='manage/js/plugins.js')}}"></script>
 
 <!-- ================================================
+Bootstrap Select
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/bootstrap-select/bootstrap-select.js')}}"></script>
+
+<!-- ================================================
 Data Tables
 ================================================ -->
 <script src="{{url_for('static', filename='manage/js/datatables/datatables.min.js')}}"></script>
 
+<!-- ================================================
+Bootstrap Toggle
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/bootstrap-toggle/bootstrap-toggle.min.js')}}"></script>
 
+<!-- ================================================
+Moment.js
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/moment/moment.min.js')}}"></script>
+
+<!-- ================================================
+Bootstrap Date Range Picker
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/date-range-picker/daterangepicker.js')}}"></script>
+
+<!-- ================================================
+Sweet Alert
+================================================ -->
+<script src="{{url_for('static', filename='manage/js/sweet-alert/sweet-alert.min.js')}}"></script>
 
 <script>
 $(document).ready(function() {
@@ -130,7 +157,23 @@ $(document).ready(function() {
 } );
 </script>
 
+<!-- Basic Single Date Picker -->
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#ipbirth').daterangepicker({ singleDatePicker: true }, function(start, end, label) {
+    console.log(start.toISOString(), end.toISOString(), label);
+  });
+});
+</script>
 
+<!-- Basic Single Date Picker -->
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#ipchkout').daterangepicker({ singleDatePicker: true }, function(start, end, label) {
+    console.log(start.toISOString(), end.toISOString(), label);
+  });
+});
+</script>
 
 <script>
 $(document).ready(function() {
@@ -169,4 +212,6 @@ $(document).ready(function() {
     } );
 } );
 </script>
+
+
 {% endblock %}

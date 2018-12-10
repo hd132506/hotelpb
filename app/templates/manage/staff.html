@@ -22,14 +22,16 @@
     <!-- Start Panel -->
     <div class="col-md-12">
       <div class="panel panel-default">
+        <form>
         <div class="panel-title">
-          STAFF LIST
+          STAFF LIST<button href="#" type="submit" style="float:right; margin-left: 10px;" class="btn"><i class="fa fa-trash"></i>Remove</button><a data-toggle="modal" data-target="#staffModal" href="#" style ="float:right;" class="btn btn-option2"><i class="fa fa-plus"></i>STAFF</a>
         </div>
         <div class="panel-body table-responsive">
 
             <table id="example0" class="table display">
                 <thead>
                     <tr>
+                        <th>CheckBox</th>
                         <th>E_ID</th>
                         <th>Name</th>
                         <th>Department</th>
@@ -41,6 +43,7 @@
 
                 <tfoot>
                     <tr>
+                        <th>CheckBox</th>
                         <th>E_ID</th>
                         <th>Name</th>
                         <th>Department</th>
@@ -52,6 +55,7 @@
 
                 <tbody>
                     <tr>
+                        <td><input type="checkbox" name="user_CheckBox" ></td>
                         <td>112</td>
                         <td>이아델</td>
                         <td>청소부</td>
@@ -60,6 +64,7 @@
                         <td>English, Spanish</td>
                     </tr>
                     <tr>
+                        <td><input type="checkbox" name="user_CheckBox" ></td>
                         <td>921</td>
                         <td>김쿡</td>
                         <td>요리부</td>
@@ -69,6 +74,7 @@
                     </tr>
                     {% for staff in staffs %}
                     <tr>
+                        <td><input type="checkbox" name="user_CheckBox" ></td>
                         <td>{{ staff.id }}</td>
                         <td>{{staff.first_name}} {{ staff.last_name }}</td>
                         <td>{{ staff.job }}</td>
@@ -93,7 +99,7 @@
 
 
         </div>
-
+        </form>
       </div>
     </div>
     <!-- End Panel -->
@@ -124,6 +130,7 @@ Data Tables
 ================================================ -->
 <script src="{{url_for('static', filename='manage/js/datatables/datatables.min.js')}}"></script>
 
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/bootstrap-select/bootstrap-select.js')}}"></script>
 
 
 <script>

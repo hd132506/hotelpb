@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Modern is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+  <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
+  <title>Welcome! DONGHOTEL</title>
+
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <!-- ========== Css Files ========== -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='manage/css/root.css')}}">
+
+  </head>
+  <body>
+  <!-- Start Page Loading -->
+  <div class="loading"><img src="static/manage/img/loading.gif" alt="loading-img"></div>
+  <!-- End Page Loading -->
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+  <!-- START TOP -->
+  <div id="top" class="clearfix">
+
+    <!-- Start App Logo -->
+    <div class="applogo">
+      <a href="{{url_for('staff_task')}}" class="logo">DONGHOTEL</a>
+    </div>
+    <!-- End App Logo -->
+
+     <!-- Start Sidebar Show Hide Button -->
+    <a href="#" class="sidebar-open-button"><i class="fa fa-bars"></i></a>
+    <a href="#" class="sidebar-open-button-mobile"><i class="fa fa-bars"></i></a>
+    <!-- End Sidebar Show Hide Button -->
+
+    <!-- Start Top Right -->
+    <ul class="top-right">
+
+<li class="dropdown link">
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox"><img src="static/manage/img/profileimg.png" alt="img"><b>{{ current_user.last_name }} {{ current_user.first_name }}</b><span class="caret"></span></a>
+        <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right">
+          <li><a href="{{ url_for('logout') }}" ><i class="fa falist fa-power-off"></i> Logout</a></li>
+                    <!-- 로그인 화면으로 전환 ㄱ-->
+        </ul>
+    </li>
+
+
+    </ul>
+    <!-- End Top Right -->
+
+  </div>
+  <!-- END TOP -->
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+<!-- START SIDEBAR -->
+<div class="sidebar clearfix">
+
+<ul class="sidebar-panel nav">
+  <li><a href="{{url_for('staff_task')}}"><span class="icon color5"><i class="fa fa-suitcase"></i></span>Task</a></li>
+  <li><a href="{{url_for('modify')}}"><span class="icon color5"><i class="fa fa-pencil"></i></span>Modify</a></li>
+
+</ul>
+
+
+</div>
+<!-- END SIDEBAR -->
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+<!-- START CONTENT -->
+<div class="content">
+
+  {% block content %}{% endblock %}
+</div>
+{% block addition %}{% endblock %}
+<!-- ================================================
+Bootstrap Select
+================================================ -->
+
+
+
+</body>
+</html>
