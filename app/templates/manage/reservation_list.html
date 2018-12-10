@@ -23,9 +23,10 @@
    <!-- Start Panel -->
    <div class="col-md-12">
      <div class="panel panel-default">
+      <form>
        <div class="panel-title">
-         RESERVATION LIST
-       </div>
+          RESERVATION LIST<button href="#" type="submit" style="float:right; margin-left: 10px;" class="btn"><i class="fa fa-trash"></i>Remove</button>><a data-toggle="modal" data-target="#reserveModal" href="#" style ="float:right;" class="btn btn-option2"><i class="fa fa-plus"></i>RESERVATION</a>
+        </div>
        <div class="panel-body table-responsive">
 
            <table id="example0" class="table display">
@@ -90,7 +91,7 @@
 
 
        </div>
-
+      </form>
      </div>
    </div>
    <!-- End Panel -->
@@ -102,10 +103,11 @@
 {% endblock %}
 
 {% block addition %}
+ <link rel="stylesheet" href="{{url_for('static', filename='manage/css/plugin/date-range-picker/daterangepicker-bs3.css')}}">
 <!-- ================================================
 jQuery Library
 ================================================ -->
-<script type="text/javascript" src="{{url_for('static', filename='manage/js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/jquery.min.js')}}"></script> 
 
 <!-- ================================================
 Bootstrap Core JavaScript File
@@ -118,11 +120,34 @@ Plugin.js - Some Specific JS codes for Plugin Settings
 <script type="text/javascript" src="{{url_for('static', filename='manage/js/plugins.js')}}"></script>
 
 <!-- ================================================
+Bootstrap Select
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/bootstrap-select/bootstrap-select.js')}}"></script>
+
+<!-- ================================================
 Data Tables
 ================================================ -->
 <script src="{{url_for('static', filename='manage/js/datatables/datatables.min.js')}}"></script>
 
+<!-- ================================================
+Bootstrap Toggle
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/bootstrap-toggle/bootstrap-toggle.min.js')}}"></script>
 
+<!-- ================================================
+Moment.js
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/moment/moment.min.js')}}"></script>
+
+<!-- ================================================
+Bootstrap Date Range Picker
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/date-range-picker/daterangepicker.js')}}"></script>
+
+<!-- ================================================
+Sweet Alert
+================================================ -->
+<script src="{{url_for('static', filename='manage/js/sweet-alert/sweet-alert.min.js')}}"></script>
 
 <script>
 $(document).ready(function() {
@@ -130,7 +155,23 @@ $(document).ready(function() {
 } );
 </script>
 
+<!-- Basic Single Date Picker -->
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#ipbirth').daterangepicker({ singleDatePicker: true }, function(start, end, label) {
+    console.log(start.toISOString(), end.toISOString(), label);
+  });
+});
+</script>
 
+<!-- Basic Single Date Picker -->
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#ipchkout').daterangepicker({ singleDatePicker: true }, function(start, end, label) {
+    console.log(start.toISOString(), end.toISOString(), label);
+  });
+});
+</script>
 
 <script>
 $(document).ready(function() {
@@ -169,4 +210,6 @@ $(document).ready(function() {
     } );
 } );
 </script>
+
+
 {% endblock %}

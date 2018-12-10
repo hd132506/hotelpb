@@ -23,14 +23,16 @@
    <!-- Start Panel -->
    <div class="col-md-12">
      <div class="panel panel-default">
+      <form>
        <div class="panel-title">
-         TASK LIST
+         TASK LIST<button href="#" type="submit" style="float:right; margin-left: 10px;" class="btn"><i class="fa fa-trash"></i>Remove</button><a data-toggle="modal" data-target="#myModal" href="#" style ="float:right; " class="btn btn-option2"><i class="fa fa-plus"></i>Task</a>
        </div>
        <div class="panel-body table-responsive">
 
            <table id="example0" class="table display">
                <thead>
                    <tr>
+                       <th>CheckBox</th>
                        <th>E_ID</th>
                        <th>Name</th>
                        <th>Task</th>
@@ -41,6 +43,7 @@
 
                <tfoot>
                    <tr>
+                       <th>CheckBox</th>
                        <th>E_ID</th>
                        <th>Name</th>
                        <th>Task</th>
@@ -51,24 +54,28 @@
 
                <tbody>
                    <tr>
-                       <td>112</td>
-                       <td>이아델</td>
-                       <td>501호 청소</td>
-                       <td>2018/12/24 10:00</td>
-                       <td>O</td>
+                       <td><input type="checkbox" name="user_CheckBox" ></td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">112</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">이아델</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">501호 청소</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">2018/12/24 10:00</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">O</td>
                    </tr>
-                   <tr <a href="#" data-toggle="modal" data-target="#taskModal"></a>
-                       <td><a href = "#">NULL</a></td>
-                       <td>NULL</td>
-                       <td>뷔페 100인분 준비</td>
-                       <td>2018/12/25 18:00</td>
-                       <td>X</td>
+                   <tr>
+                       <td><input type="checkbox" name="user_CheckBox" ></td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">NULL</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">NULL</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">뷔페 100인분 준비</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">2018/12/25 18:00</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">X</td>
+                   </tr>
                    </tr>
                </tbody>
            </table>
 
 
        </div>
+      </form>
      </div>
    </div>
    <!-- End Panel -->
