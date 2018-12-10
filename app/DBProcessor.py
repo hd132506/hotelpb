@@ -1,4 +1,4 @@
-from app import db
+from app import tempData
 from app.models import *
 from datetime import datetime
 
@@ -25,6 +25,18 @@ def availableRooms(checkin_date, checkout_date, n_people):
             .first()[0]
         idx += 1
 
-
-
     return avail_list.all(), occupied_rooms
+
+def make_reservation():
+    g = Guest(first_name=tempData.CustomerData.first_name,\
+                last_name=tempData.CustomerData.last_name,\
+                check_in_date=tempData.CustomerData.checkin_date,\
+                check_out_date=tempData.CustomerData.checkout_date,\
+                head_cnt=tempData.CustomerData.n_people,\
+                birthday=tempData.CustomerData.birthday,\
+                phone=tempData.CustomerData.phone_number,\
+                email=tempData.CustomerData.email)
+    r = Reserve(room_info_id=tempData.RoomData.room_info_id, paid=False)
+    g.reserve.append(r)
+    db.session.add(g)
+    db.session.commit()

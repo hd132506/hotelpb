@@ -102,14 +102,13 @@
                 <div class="image" style="background-image: url('{{url_for('static', filename='customer/images/img_1.jpg')}}'); "></div>
                 <div class="text">
                     <h2 class="heading">{{room.Room_info.room_type}}, {{room.Room_info.room_class}}</h2>
-                    <div class="price"><sup>$</sup><span class="number">150</span><sub>/per night</sub></div>
+                    <div class="price"><sup>₩</sup><span class="number">{{room.Room_info.fee}}</span><sub>/per night</sub></div>
                     <ul class="specs mb-5">
                         <li><strong>Occupancy:</strong> {{room.Room_info.capacity}}</li>
-                        <li><strong>Fee:</strong> {{room.Room_info.fee}}</li>
                         <li><strong>Remain:</strong> {{room.n_rooms - occupiedRooms[loop.index0]}}</li>
                     </ul>
                     <p>
-                        <button class="btn btn-primary" data-target="#reserveForm" data-toggle="modal">Book Now</button>
+                        <button class="btn btn-primary" data-target="#reserve{{room.Room_info.id}}" data-toggle="modal">Book Now</button>
                     </p>
                 </div>
             </div>
@@ -119,7 +118,9 @@
 
     </div>
 
-    <div class="modal fade" id="reserveForm">
+    {% for room in availRooms %}
+    {% if room.n_rooms - occupiedRooms[loop.index0] > 0%}
+    <div class="modal fade" id="reserve{{room.Room_info.id}}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- header -->
@@ -130,31 +131,35 @@
                 <!-- body -->
                 <div class="modal-body">
                     <div class="col-md-12">
-                        <form>
+                        <form action="" method="post" role="form">
+                            {{ form.hidden_tag() }}
                             <div class="form-group">
                                 <label for="guest_first_name">First name</label>
-                                <input type="text" class="form-control" id="guest_first_name"
-                                       placeholder="first name">
+                                {{ cform.first_name(class='form-control', id='guest_first_name', placeholder='first name')}}
                             </div>
                             <div class="form-group">
                                 <label for="guest_last_name">Last name</label>
-                                <input type="text" class="form-control" id="guest_last_name"
-                                       placeholder="last name">
+                                {{ cform.last_name(class='form-control', id='guest_last_name', placeholder='last name')}}
                             </div>
                             <div class="form-group">
                                 <label for="guest_birthday">Birthday</label>
-                                <input type="date" class="form-control" id="guest_birthday">
+                                <!-- <input type="date" class="form-control" id="guest_birthday"> -->
+                                {{ cform.birthday(class='form-control', id='guest_birthday') }}
                             </div>
                             <div class="form-group">
                                 <label for="guest_phone">Phone Number</label>
-                                <input type="tel" class="form-control" id="guest_phone" placeholder="phone number">
+                                <!-- <input type="tel" class="form-control" id="guest_phone" placeholder="phone number"> -->
+                                {{ cform.phone_number(class='form-control', id='guest_phone', placeholder='phone number') }}
                             </div>
                             <div class="form-group">
                                 <label for="guest_email">E-Mail</label>
-                                <input type="email" class="form-control" id="guest_email" placeholder="Email">
+                                <!-- <input type="email" class="form-control" id="guest_email" placeholder="Email"> -->
+                                {{ cform.e_mail(class='form-control', id='guest_email', placeholder='E-mail') }}
                             </div>
 
-                            <label for="checkin">Check Out</label>
+                            <div class="form-group">
+                                <input type="hidden" value="{{room.Room_info.id}}" name="rinfo_id" />
+                            </div>
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -176,6 +181,8 @@
             </div>
         </div>
     </div>
+    {% endif %}
+    {% endfor %}
 
 </div>
 

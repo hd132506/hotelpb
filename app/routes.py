@@ -1,5 +1,5 @@
 from flask import render_template, flash, request, redirect, url_for
-from app import app, db
+from app import app, db, tempData
 from app.forms import *
 from flask_login import current_user, login_user, login_required, logout_user
 from app.models import *
@@ -66,8 +66,11 @@ def logout():
 @app.route('/customer/index', methods=['GET', 'POST'])
 def cindex():
     form = DatePickForm(request.form)
+
     if form.validate_on_submit():
         return redirect(url_for('reserve'), code=307)
+    else:
+        print('invalid', form.checkin_date.data)
     return render_template('customer/index.html', form=form)
 
 @app.route('/customer/room')
@@ -85,18 +88,35 @@ def about():
 @app.route('/customer/reserve', methods=['GET', 'POST'])
 def reserve():
     form = DatePickForm(request.form)
+    cform = customerInfoForm(request.form)
+
     if form.validate_on_submit():
         checkin_date = parseToDate(form.checkin_date.data)
         checkout_date = parseToDate(form.checkout_date.data)
+        # Store form info into tempData
+        tempData.CustomerData.checkin_date = checkin_date
+        tempData.CustomerData.checkout_date = checkout_date
+        tempData.CustomerData.n_people = int(form.people.data)
         availRooms, occupiedRooms = availableRooms(checkin_date, checkout_date, int(form.people.data))
-        return render_template('customer/reserve.html', form=form, availRooms=availRooms, occupiedRooms=occupiedRooms)
+        return render_template('customer/reserve.html', form=form, cform=cform, availRooms=availRooms, occupiedRooms=occupiedRooms, code=307)
     else:
         availRooms, occupiedRooms = availableRooms(datetime(1900, 1, 1), datetime(3000, 12, 31), 0)
-    return render_template('customer/reserve.html', form=form, availRooms=availRooms, occupiedRooms=occupiedRooms)
 
-@app.route('/customer/request_reservation', methods=['POST'])
-def request_reservation():
-    pass
+    if cform.validate_on_submit():
+        tempData.CustomerData.first_name = cform.first_name.data
+        tempData.CustomerData.last_name = cform.last_name.data
+        tempData.CustomerData.birthday = cform.birthday.data
+        tempData.CustomerData.phone_number = cform.phone_number.data
+        tempData.CustomerData.email = cform.e_mail.data
+        tempData.RoomData.room_info_id = int(request.form['rinfo_id'])
+        make_reservation()
+        print('success!')
+
+    return render_template('customer/reserve.html', form=form, cform=cform, availRooms=availRooms, occupiedRooms=occupiedRooms, code=307)
+
+# @app.route('/customer/request_reservation', methods=['POST'])
+# def request_reservation():
+#     pass
 
 @app.route('/customer/contact')
 def contact():

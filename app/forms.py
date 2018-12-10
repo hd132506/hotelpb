@@ -11,10 +11,12 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign in')
 
+
+
 class DatePickForm(FlaskForm):
     n_people = [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4+')]
     checkin_date = StringField('Checkin date', validators=[DataRequired()])
-    checkout_date = StringField('Checkin date', validators=[DataRequired()])
+    checkout_date = StringField('Checkout date', validators=[DataRequired()])
     people = SelectField('People', choices=n_people, validators=[DataRequired()])
     def validate(self):
         # check with original validator
@@ -40,4 +42,8 @@ class DatePickForm(FlaskForm):
         return True
 
 class customerInfoForm(FlaskForm):
-    pass
+    first_name = StringField('First name', validators=[DataRequired()])
+    last_name = StringField('Last name', validators=[DataRequired()])
+    birthday = DateField('Birthday', validators=[DataRequired()])
+    phone_number = StringField('Phone number', validators=[DataRequired()])
+    e_mail = StringField('E-mail', validators=[DataRequired()])
