@@ -15,7 +15,7 @@ class Employee(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(64))
     last_name = db.Column(db.String(64), index=True)
-    job_id = db.Column(db.Integer, db.ForeignKey('job.id'))
+    job = db.Column(db.String(45), index=True)
     phone = db.Column(db.String(45))
     on_work = db.Column(db.Boolean, default=False)
     languages = db.relationship('Language', secondary=languages, lazy='subquery',
@@ -33,11 +33,6 @@ class Employee(UserMixin, db.Model):
 
     def __repr__(self):
         return '<Employee {}>'.format(self.last_name)
-
-class Job(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    desc = db.Column(db.String(45), index=True)
-    employees = db.relationship('Employee', backref='job', cascade='all, delete-orphan')
 
 class Language(db.Model):
     id = db.Column(db.Integer, primary_key=True)
