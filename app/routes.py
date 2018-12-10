@@ -31,6 +31,17 @@ def room_list():
 def task_list():
     return render_template('manage/task.html')
 
+@app.route('/modify')
+@login_required
+def modify():
+    return render_template('manage/modify.html')
+
+@app.route('/staff_task')
+@login_required
+def staff_task():
+    return render_template('manage/staff_task.html')
+
+
 @app.route('/stafflist')
 @login_required
 def staff_list():
@@ -56,6 +67,7 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
 
 ##### End - for Management part #####
 

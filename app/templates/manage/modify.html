@@ -1,0 +1,173 @@
+{% extends "manage/base2.html" %}
+
+{% block content %}
+
+ 
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTAINER -->
+<div class="container-padding container-widget">
+
+
+  
+  <!-- Start Row -->
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="panel panel-default">
+
+        <div class="panel-title">
+         Modify your information
+          <ul class="panel-tools">
+            <li><a class="icon minimise-tool"><i class="fa fa-minus"></i></a></li>
+            <li><a class="icon expand-tool"><i class="fa fa-expand"></i></a></li>
+          </ul>
+        </div>
+
+            <div class="panel-body">
+              <form class="form-horizontal">
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">E-id</label>
+                  <div class="col-sm-10">
+                    <p class="form-control-static">현재 접속해 있는 직원 id 가져오고 싶음</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input0" class="col-sm-2 control-label">Username</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input0" placeholder="{{Username}}">
+                    <!--현재 접속해 있는 직원의 username을 띄우고자 함-->
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input1" class="col-sm-2 control-label">First Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input1" placeholder="{{ current_user.first_name }}">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input2" class="col-sm-2 control-label">Last Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input2" placeholder="{{ current_user.last_name }}">
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="input3" class="col-sm-2 control-label">Address</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input3">
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="input4" class="col-sm-2 control-label">Phone</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input4">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input5" class="col-sm-2 control-label">E-mail</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input5">
+                  </div>
+                </div>
+            
+                <div class="form-group">
+                  <label for="name" class="col-sm-2 control-label">Password</label>
+                  <div class="has-success col-xs-6 col-md-4">
+                    <input type="password" class="form-control" name="password"id="password" placeholder="Password">
+                  </div>
+                </div>
+
+              <!--비밀번호 일치하는지 확인하는 걸 구현하고 싶었지만 실패함
+              <form data-toggle="validator" role="form">
+             <div class="form-group">
+          <label for="inputPassword" class="control-label">Password</label>
+              <div class="form-inline row">
+          <div class="form-group col-sm-6 pull-right">
+            <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+            <div class="help-block">Minimum of 6 characters</div>
+          </div>
+          <div class="form-group col-sm-6 pull-right">
+            <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+             <div class="help-block with-errors"></div>
+           </div>
+         </div>
+       </div>-->
+
+
+              <button type="submit" class="btn btn-default pull-right">Modify</button>
+            </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- End Row -->
+
+
+
+</div>
+<!-- END CONTAINER -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Start Footer -->
+<div class="row footer">
+  <div class="col-md-6 text-left">
+  Copyright &copy; 2016 <a href="#" target="_blank">ThemesGround</a> All rights reserved.
+  </div>
+  <div class="col-md-6 text-right">
+    Design and Developed by <a href="#" target="_blank">ThemesGround</a>
+  </div> 
+</div>
+<!-- End Footer -->
+
+
+</div>
+<!-- End Content -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START SIDEPANEL -->
+<!-- END SIDEPANEL -->
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+{% endblock %}
+
+{% block addition %}
+
+
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/jquery.min.js')}}"></script>
+
+<!-- ================================================
+Bootstrap Core JavaScript File
+================================================ -->
+<script src="{{url_for('static', filename='manage/js/bootstrap/bootstrap.min.js')}}"></script>
+
+<!-- ================================================
+Plugin.js - Some Specific JS codes for Plugin Settings
+================================================ -->
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/plugins.js')}}"></script>
+
+<!-- ================================================
+Bootstrap Select
+================================================ -->
+<script type="text/javascript" src="{{url_for('static',filename='manage/js/bootstrap-select/bootstrap-select.js')}}"></script>
+
+<!-- ================================================
+Bootstrap Toggle
+================================================ -->
+<script type="text/javascript" src="{{url_for('static',filename='manage/js/bootstrap-toggle/bootstrap-toggle.min.js')}}"></script>
+
+<!-- ================================================
+Moment.js
+================================================ -->
+<script type="text/javascript" src="{{url_for('static',filename='manage/js/moment/moment.min.js')}}"></script>
+
+
+
+{% endblock %}
