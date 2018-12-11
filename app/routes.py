@@ -32,7 +32,10 @@ def index():
 @app.route('/reservelist')
 @login_required
 def reserve_list():
-    return render_template('manage/reservation_list.html')
+    reserve = db.session.query(Reserve, Room_info, Guest)\
+    .filter(Reserve.room_info_id==Room_info.id).filter(Guest.id==Reserve.guest_id).all()
+    
+    return render_template('manage/reservation_list.html', reserve=reserve)
 
 @app.route('/roomlist')
 @login_required

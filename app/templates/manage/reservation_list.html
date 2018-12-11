@@ -35,6 +35,7 @@
                        <th>CheckBox</th>
                        <th>Check-in Date</th>
                        <th>Room Type</th>
+                       <th>Room Class</th>
                        <th>Headcount</th>
                        <th>RESERVATION NUMBER</th>
                    </tr>
@@ -45,49 +46,29 @@
                        <th>CheckBox</th>
                        <th>Check-in Date</th>
                        <th>Room Type</th>
+                       <th>Room Class</th>
                        <th>Headcount</th>
                        <th>RESERVATION NUMBER</th>
                    </tr>
                </tfoot>
 
                <tbody>
+                   {% for r in reserve %}
                    <tr>
                        <td><input type="checkbox" name="user_CheckBox" ></td>
-                       <td id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">2018/12/24</td>
-                       <td id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">Double</td>
-                       <td id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">2</td>
-                       <td id = "res_num" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">10234598760</td>
-                       <script>
-                         document.querySelector('#res_num').onclick = function(){
-                           swal("상세정보", "이름 : 김감귤\n생년월일 : 19810118\n성별 : M\n인원 : 2\n국가 : Republic Of Korea\n체크인 날짜 : 2018/12/24\n체크아웃 날짜 : 2018/12/25\n연락처 : 01023459876\n이메일주소 : KIMTAN0118@parisbaguette.com\n예약 시간 : 2018/12/02 22:16:00\n객실 가격 : 410,000원\n예약번호 : 10234598760\n방 타입 : Double\n방 클래스 : Superior")
-                         };
-                       </script>
-                   </tr>
-                   <tr>
-                       <td><input type="checkbox" name="user_CheckBox" ></td>
-                       <td id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">2018/12/25</td>
-                       <td id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">Single</td>
-                       <td id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">1</td>
-                       <td id = "res_num2" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">10987623450</td>
-                       <script>
-                         document.querySelector('#res_num2').onclick = function(){
-                           swal("상세정보", "이름 : 김말랭\n생년월일 : 19910228\n성별 : M\n인원 : 1\n국가 : Republic Of Korea\n체크인 날짜 : 2018/12/30\n체크아웃 날짜 : 2018/12/31\n연락처 : 01045678987\n이메일주소 : MALLANG0128@parisbaguette.com\n예약 시간 : 2018/12/05 23:12:00\n객실 가격 : 360,000원\n예약번호 : 10456789870\n방 타입 : Single\n방 클래스 : Superior")
-                         };
-                       </script>
-                   </tr>
-                   <tr>
-                       <td><input type="checkbox" name="user_CheckBox" ></td>
-                       <td id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">2018/12/25</td>
-                       <td id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">Single</td>
-                       <td id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">1</td>
-                       <td id = "res_num3" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">10987623450</td>
+                       <td id = "res_num{{r.Reserve.id}}" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">{{r.Guest.check_in_date}}</td>
+                       <td id = "res_num{{r.Reserve.id}}" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">{{r.Room_info.room_type}}</td>
+                       <td id = "res_num{{r.Reserve.id}}" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">{{r.Room_info.room_class}}</td>
+                       <td id = "res_num{{r.Reserve.id}}" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">{{r.Guest.head_cnt}}</td>
+                       <td id = "res_num{{r.Reserve.id}}" style = "cursor:pointer;" onClick = " location.href='#' " onMouseOver = " window.status = '#' " onMouseOut = " window.status = '' ">{{r.Reserve.id}}</td>
 
                        <script>
-                         document.querySelector('#res_num3').onclick = function(){
-                           swal("상세정보", "이름 : 김감귤\n생년월일 : 19810118\n성별 : M\n인원 : 2\n국가 : Republic Of Korea\n체크인 날짜 : 2018/12/24\n체크아웃 날짜 : 2018/12/25\n연락처 : 01023459876\n이메일주소 : KIMTAN0118@parisbaguette.com\n예약 시간 : 2018/12/02 22:16:00\n객실 가격 : 410,000원\n예약번호 : 10234598760\n방 타입 : Double\n방 클래스 : Superior")
+                         document.querySelector('#res_num{{r.Reserve.id}}').onclick = function(){
+                           swal("상세정보", "이름 : {{r.Guest.first_name}} {{r.Guest.last_name}}\n생년월일 : {{r.Guest.birthday}}\n인원 : {{r.Guest.head_cnt}}\n체크인 날짜 : {{r.Guest.check_in_date}}\n체크아웃 날짜 : {{r.Guest.check_out_date}}\n연락처 : {{r.Guest.phone}}\n이메일주소 : {{r.Guest.email}}\n예약 시간 : {{r.Reserve.reserve_time}}\n객실 가격 : {{r.Room_info.fee}}원\n예약번호 : {{r.Reserve.id}}")
                          };
                        </script>
                    </tr>
+                   {% endfor %}
                </tbody>
            </table>
 
@@ -109,7 +90,7 @@
 <!-- ================================================
 jQuery Library
 ================================================ -->
-<script type="text/javascript" src="{{url_for('static', filename='manage/js/jquery.min.js')}}"></script> 
+<script type="text/javascript" src="{{url_for('static', filename='manage/js/jquery.min.js')}}"></script>
 
 <!-- ================================================
 Bootstrap Core JavaScript File
