@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Modern is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+  <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
+  <title>Welcome! DONGHOTEL</title>
+
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <!-- ========== Css Files ========== -->
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='manage/css/root.css')}}">
+
+  </head>
+  <body>
+  <!-- Start Page Loading -->
+  <div class="loading"><img src="static/manage/img/loading.gif" alt="loading-img"></div>
+  <!-- End Page Loading -->
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+  <!-- START TOP -->
+  <div id="top" class="clearfix">
+
+    <!-- Start App Logo -->
+    <div class="applogo">
+      <a href="{{url_for('index')}}" class="logo">DONGHOTEL</a>
+    </div>
+    <!-- End App Logo -->
+
+     <!-- Start Sidebar Show Hide Button -->
+    <a href="#" class="sidebar-open-button"><i class="fa fa-bars"></i></a>
+    <a href="#" class="sidebar-open-button-mobile"><i class="fa fa-bars"></i></a>
+    <!-- End Sidebar Show Hide Button -->
+
+    <!-- Start Top Right -->
+    <ul class="top-right">
+
+<li class="dropdown link">
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle profilebox"><img src="static/manage/img/profileimg.png" alt="img"><b>{{ current_user.last_name }} {{ current_user.first_name }}</b><span class="caret"></span></a>
+        <ul class="dropdown-menu dropdown-menu-list dropdown-menu-right">
+          <li><a href="{{ url_for('logout') }}" ><i class="fa falist fa-power-off"></i> Logout</a></li>
+                    <!-- 로그인 화면으로 전환 ㄱ-->
+        </ul>
+    </li>
+
+
+    </ul>
+    <!-- End Top Right -->
+
+  </div>
+  <!-- END TOP -->
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+<!-- START SIDEBAR -->
+<div class="sidebar clearfix">
+
+<ul class="sidebar-panel nav">
+  <li><a href="{{url_for('index')}}"><span class="icon color5"><i class="fa fa-home"></i></span>ROOM STATUS</a></li>
+  <li><a href="#"><span class="icon color9"><i class="fa fa-th"></i></span>LISTs<span class="caret"></span></a>
+    <ul>
+      <li><a href="{{url_for('reserve_list')}}">RESERVATION LIST</a></li>
+      <li><a href="{{url_for('room_list')}}">ROOM LIST</a></li>
+      <li><a href="{{url_for('task_list')}}">TASK LIST</a></li>
+      <li><a href="{{url_for('staff_list')}}">STAFF LIST</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+</div>
+<!-- END SIDEBAR -->
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+<!-- START CONTENT -->
+<div class="content">
+
+  {% block content %}{% endblock %}
+<!-- Modals -->
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="Task" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Task Assignment</h4>
+      </div>
+      <div class="modal-body table-responsive">
+        <table id="tasktable" class="table display">
+          <thead>
+            <tr>
+              <th>CheckBox</th>
+              <th>E_ID</th>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Phone Number</th>
+              <th>On work</th>
+              <th>Foreign Language</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+                <td><input type="checkbox" name="user_CheckBox" ></td>
+                <td>112</td>
+                <td>이아델</td>
+                <td>청소부</td>
+                <td>01022223333</td>
+                <td>O</td>
+                <td>English, Spanish</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="user_CheckBox" ></td>
+                <td>921</td>
+                <td>김쿡</td>
+                <td>요리부</td>
+                <td>01098765432</td>
+                <td>X</td>
+                <td>X</td>
+            </tr>
+           </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type= "button" class="btn btn-white" data-dismiss="modal">Close</button>
+        <button type= "submit" class="btn btn-default">Assign</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Taskmod" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          ADD TASK
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="input3"  class="form-label">TASK</label>
+                <input type="text" class="form-control" id="input3">
+            </div>
+            <center><button type="submit" class="btn btn-default">Submit</button></center>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="staffModal" tabindex="-1" role="dialog" aria-labelledby="Staffmod" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          ADD STAFF
+        </div>
+        <div class="modal-body">
+          <form>
+<!--             <div class="form-group">
+              <label for="input1" class="form-label">E_ID</label>
+                <input type="text" class="form-control" id="input1">
+            </div> -->
+            <div class="form-group">
+              <label for="input2" class="form-label">NAME</label>
+                <input type="text" class="form-control" id="input2">
+            </div>
+            <div class="form-group">
+              <label for="input3"  class="form-label">DEPARTMENT</label>
+                <div>
+                    <select class="selectpicker">
+                        <option>식음료부</option>
+                        <option>조리부</option>
+                        <option>객실부</option>
+                        <option>객실관리부</option>
+                        <option>사무직</option>
+                        <option>영업/판촉마케팅</option>
+                        <option>휘트니스클럽</option>                        
+                      </select>                  
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="input4" class="form-label">PHONE NUMBER</label>
+                <input type="text" class="form-control" id="input4">
+            </div>
+<!--             <div class="form-group">
+              <label for="input5" class="form-label">ON WORK</label>
+                <input type="text" class="form-control" id="input5">
+            </div> -->
+            <div class="form-group">
+              <label for="input6" class="form-label">FOREIGN LANGUAGE</label>
+                    <select class="selectpicker" multiple>
+                        <option>Korean</option>
+                        <option>English</option>
+                        <option>Japanese</option>
+                        <option>Chinese</option>
+                        <option>Portuguese</option>
+                        <option>French</option>
+                        <option>German</option>
+                        <option>Russian</option>
+                        <option>Arabic</option>
+                        <option>Spanish</option>
+                        <option>Filipino</option>
+                        <option>Thai</option>                 
+                      </select>
+            </div>
+            <center><button type="submit" class="btn btn-default">Submit</button></center>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-labelledby="Staffmod" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          ADD RESERVATION
+        </div>
+        <div class="modal-body">
+        <form>  
+            <div class="form-group">
+              <label for="ipnum" class="form-label">NAME</label>
+                <input type="text" class="form-control" id="ipname">
+            </div>
+            <div class="form-group">
+              <label for="ipbirth" class="form-label">BIRTHDAY</label>
+                  <fieldset>
+                    <div class="control-group">
+                      <div class="controls">
+                       <div class="input-prepend input-group" id="datepicker">
+                         <span class="add-on input-group-addon"><i class="fa fa-calendar"></i></span>
+                         <input type="text" id="ipbirth" class="form-control" value="03/18/2015"/> 
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+            </div>
+            <div class="form-group">
+              <label for="ipsex"  class="form-label">SEX</label>
+                <div class="radio radio-info radio-inline">
+                        <input type="radio" id="inlineRadio1" value="option1" name="radioInline">
+                        <label for="inlineRadio1"> Male </label>
+                    </div>
+                    <div class="radio radio-inline">
+                        <input type="radio" id="inlineRadio2" value="option1" name="radioInline">
+                        <label for="inlineRadio2"> Female </label>
+                    </div>
+            </div>
+            <div class="form-group">
+              <label for="ipnum" class="form-label">NUMBER</label>
+                <input type="text" class="form-control" id="ipnum">
+            </div>
+            <div class="form-group">
+              <label for="ipnation" class="form-label">NATION</label>
+                  <div>
+                    <select class="selectpicker" data-live-search="true">
+                        <option>AFGHANISTAN</option>
+                        <option>ALBANIA</option>
+                        <option>ALGERIA</option>
+                        <option>ANDORRA</option>
+                        <option>ANGOLA</option>
+                        <option>ANTIGUA & BARBUDA</option>
+                        <option>ARGENTINA</option>
+                        <option>ARMENIA</option>
+                        <option>AUSTRALIA</option>
+                        <option>AUSTRIA</option>
+                        <option>AZERBAIJAN</option>
+                        <option>BAHAMAS</option>
+                        <option>BAHRAIN</option>
+                        <option>BANGLADESH</option>
+                        <option>BARBADOS</option>
+                        <option>BELARUS</option>
+                        <option>BELGIUM</option>
+                        <option>BELIZE</option>
+                        <option>BENIN</option>
+                        <option>BHUTAN</option>
+                        <option>BOLIVIA</option>
+                        <option>BOSNIA & HERZEGOVINA</option>
+                        <option>BOTSWANA</option>
+                        <option>BRAZIL</option>
+                        <option>BRUNEI</option>
+                        <option>BULGARIA</option>
+                        <option>BURKINA FASO</option>
+                        <option>BURUNDI</option>
+                        <option>CAMBODIA</option>
+                        <option>CAMEROON</option>
+                        <option>CANADA</option>
+                        <option>CAPE VERDE</option>
+                        <option>CENTRAL AFRICA</option>
+                        <option>CHAD</option>
+                        <option>CHILE</option>
+                        <option>CHINA</option>
+                        <option>COLOMBIA</option>
+                        <option>COMOROS</option>
+                        <option>CONGO(CC)</option>
+                        <option>CONGO(DR)</option>
+                        <option>COSTA RICA</option>
+                        <option>COTE D'IVOIRE</option>
+                        <option>CROATIA</option>
+                        <option>CUBA</option>
+                        <option>CYPRUS</option>
+                        <option>CZECH</option>
+                        <option>DENMARK</option>
+                        <option>DJIBOUTI</option>
+                        <option>DOMINICA</option>
+                        <option>DOMINICA, REP.</option>
+                        <option>ECUADOR</option>
+                        <option>EGYPT</option>
+                        <option>EL SALVADOR</option>
+                        <option>EQ. GUINEA</option>
+                        <option>ERITREA</option>
+                        <option>ESTONIA</option>
+                        <option>ETHIOPIA</option>
+                        <option>FIJI</option>
+                        <option>FINLAND</option>
+                        <option>FRANCE</option>
+                        <option>GABON</option>
+                        <option>GAMBIA</option>
+                        <option>GEORGIA</option>
+                        <option>GERMANY</option>
+                        <option>GHANA</option>
+                        <option>GREECE</option>
+                        <option>GRENADA</option>
+                        <option>GUATEMALA</option>
+                        <option>GUINEA</option>
+                        <option>GUINEA BISSAU</option>
+                        <option>GUYANA</option>
+                        <option>HAITI</option>
+                        <option>HOLY SEE (VATICAN)</option>
+                        <option>HONDURAS</option>
+                        <option>HUNGARY</option>
+                        <option>ICELAND</option>
+                        <option>INDIA</option>
+                        <option>INDONESIA</option>
+                        <option>IRAN</option>
+                        <option>IRAQ</option>
+                        <option>IRELAND</option>
+                        <option>ISRAEL</option>
+                        <option>ITALY</option>
+                        <option>JAMAICA</option>
+                        <option>JAPAN</option>
+                        <option>JORDAN</option>
+                        <option>KAZAKHSTAN</option>
+                        <option>KENYA</option>
+                        <option>KIRIBATI</option>
+                        <option>KOREA</option>
+                        <option>KOSOVO</option>
+                        <option>KUWAIT</option>
+                        <option>KYRGYZSTAN</option>
+                        <option>LAOS</option>
+                        <option>LATVIA</option>
+                        <option>LEBANON</option>
+                        <option>LESOTHO</option>
+                        <option>LIBERIA</option>
+                        <option>LIBYA</option>
+                        <option>LIECHTENSTEIN</option>
+                        <option>LITHUANIA</option>
+                        <option>LUXEMBOURG</option>
+                        <option>MACEDONIA</option>
+                        <option>MADAGASCAR</option>
+                        <option>MALAWI</option>
+                        <option>MALAYSIA</option>
+                        <option>MALDIVES</option>
+                        <option>MALI</option>
+                        <option>MALTA</option>
+                        <option>MARSHALL ISLANDS</option>
+                        <option>MAURITANIA</option>
+                        <option>MAURITIUS</option>
+                        <option>MEXICO</option>
+                        <option>MICRONESIA</option>
+                        <option>MOLDOVA</option>
+                        <option>MONACO</option>
+                        <option>MONGOLIA</option>
+                        <option>MONTENEGRO</option>
+                        <option>MOROCCO</option>
+                        <option>MOZAMBIQUE</option>
+                        <option>MYANMAR</option>
+                        <option>NAMIBIA</option>
+                        <option>NAURU</option>
+                        <option>NEPAL</option>
+                        <option>NETHERLANDS</option>
+                        <option>NEW ZEALAND</option>
+                        <option>NICARAGUA</option>
+                        <option>NIGER</option>
+                        <option>NIGERIA</option>
+                        <option>NORWAY</option>
+                        <option>NORTH KOREA</option>
+                        <option>OMAN</option>
+                        <option>PAKISTAN</option>
+                        <option>PALAU</option>
+                        <option>PANAMA</option>
+                        <option>PAPUA NEW GUINEA(P.N.G)</option>
+                        <option>PARAGUAY</option>
+                        <option>PERU</option>
+                        <option>PHILIPPINES</option>
+                        <option>POLAND</option>
+                        <option>PORTUGAL</option>
+                        <option>QATAR</option>
+                        <option>ROMANIA</option>
+                        <option>RUSSIA</option>
+                        <option>RWANDA</option>
+                        <option>SAINT LUCIA</option>
+                        <option>SAINT KITTS & NEVIS</option>
+                        <option>SAINT VINCENT & GRENADINES</option>
+                        <option>SAMOA</option>
+                        <option>SAN MARINO</option>
+                        <option>SAO TOME & PRINCIPE</option>
+                        <option>SAUDI ARABIA</option>
+                        <option>SENEGAL</option>
+                        <option>SERBIA</option>
+                        <option>SEYCHELLES</option>
+                        <option>SIERRA LEONE</option>
+                        <option>SINGAPORE</option>
+                        <option>SLOVAKIA</option>
+                        <option>SLOVENIA</option>
+                        <option>SOLOMON ISLANDS</option>
+                        <option>SOMALIA</option>
+                        <option>SOUTH AFRICA</option>
+                        <option>SOUTH SUDAN</option>
+                        <option>SPAIN</option>
+                        <option>SRI LANKA</option>
+                        <option>SUDAN</option>
+                        <option>SURINAM</option>
+                        <option>SWAZILAND</option>
+                        <option>SWEDEN</option>
+                        <option>SWITZERLAND</option>
+                        <option>SYRIA</option>
+                        <option>TAJIKISTAN</option>
+                        <option>TANZANIA</option>
+                        <option>THAILAND</option>
+                        <option>Timor East</option>
+                        <option>TOGO</option>
+                        <option>TONGA</option>
+                        <option>TRINIDAD & TOBAGO(T&T)</option>
+                        <option>TUNISIA</option>
+                        <option>TURKEY</option>
+                        <option>TURKMENISTAN</option>
+                        <option>TUVALU</option>
+                        <option>U.A.E</option>
+                        <option>UGANDA</option>
+                        <option>UKRAINE</option>
+                        <option>UNITED KINGDOM</option>
+                        <option>UNITED STATES OF AMERICA</option>
+                        <option>URUGUAY</option>
+                        <option>UZBEKISTAN</option>
+                        <option>VANUATU</option>
+                        <option>VENEZUELA</option>
+                        <option>VIETNAM</option>
+                        <option>YEMEN</option>
+                        <option>ZAMBIA</option>
+                        <option>ZIMBABWE</option>
+                      </select>                  
+                  </div>
+            </div>
+            <div class="form-group">
+              <label for="ipchkout" class="form-label">CHECK-OUT DATE</label>
+                  <fieldset>
+                    <div class="control-group">
+                      <div class="controls">
+                       <div class="input-prepend input-group">
+                         <span class="add-on input-group-addon"><i class="fa fa-calendar"></i></span>
+                         <input type="text" id="ipchkout" class="form-control" value="03/18/2015"/> 
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+            </div>
+            <div class="form-group">
+              <label for="ipphone" class="form-label">PHONE NUMBER</label>
+                <input type="text" class="form-control" id="ipphone">
+            </div>
+            <div class="form-group">
+              <label for="ipemail" class="form-label">E-MAIL</label>
+                <input type="text" class="form-control" id="ipemail">
+            </div>
+            <div class="form-group">
+              <label for="iprtype" class="form-label">ROOM TYPE</label>
+                  <div>
+                    <select class="selectpicker">
+                        <option>Single</option>
+                        <option>Double</option>
+                        <option>Twin</option>
+                        <option>Family</option>
+                      </select>                  
+                  </div>
+            </div>
+            <div class="form-group">
+              <label for="iprclass" class="form-label">ROOM CLASS</label>
+                  <div>
+                    <select class="selectpicker">
+                        <option>Standard</option>
+                        <option>Superior</option>
+                        <option>Deluxe</option>
+                        <option>Suite</option>
+                      </select>                  
+                  </div>
+                
+            </div>
+            <center><button type="submit" class="btn btn-default">Submit</button></center>
+        </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="choutModal" tabindex="-1" role="dialog" aria-labelledby="Taskmod" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          CHECK OUT
+        </div>
+        <form>
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="input1"  class="form-label">ROOM NO.</label>
+                <div>501</div>
+            </div>
+            <div class="form-group">
+              <label for="input2"  class="form-label">NAME</label>
+                <div>김감귤</div>
+            </div>
+            <div class="form-group">
+              <label for="input3"  class="form-label">ACCOMMODATION PERIOD</label>
+                <div>2018/12/24-2018/12/25</div>
+            </div>             
+            <div class="modal-footer">
+                <button type= "button" class="btn btn-white" data-dismiss="modal">CLOSE</button>
+                <button type= "submit" class="btn btn-default">CHECK OUT</button>
+            </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="chinModal" tabindex="-1" role="dialog" aria-labelledby="Taskmod" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          CHECK IN
+        </div>
+        <form>
+        <div class="modal-body">
+          
+           <table class="table display">
+               <thead>
+                   <tr>
+                       <th>CHECK BOX</th>
+                       <th>CHECK IN DATE</th>
+                       <th>CHECK OUT DATE</th>
+                       <th>NAME</th>
+                       <th>ROOM TYPE</th>
+                       <th>ROOM CLASS</th>
+                       <th>RESERVATION NO.</th>
+                       <th>HEADCOUNT</th>
+                       <th>HEADCOUNT</th>                               
+                   </tr>
+               </thead>
+
+               <tfoot>
+                   <tr>
+                       <th>CHECK BOX</th>
+                       <th>CHECK IN DATE</th>
+                       <th>CHECK OUT DATE</th>
+                       <th>NAME</th>
+                       <th>ROOM TYPE</th>
+                       <th>ROOM CLASS</th>
+                       <th>RESERVATION NO.</th>
+                       <th>HEADCOUNT</th>
+                       <th>COUNTRY</th>  
+                   </tr>
+               </tfoot>
+
+               <tbody>
+                 <tr>
+                      <td><input type="radio" name="user_CheckBox" ></td>
+                      <td>2018.12.27</td>
+                      <td>2018.12.28</td>
+                      <td>SAKAMOTO</td>
+                      <td>Double</td>
+                      <td>Superior</td>
+                      <td>10777766660</td>
+                      <td>2</td>
+                      <td>Japan</td>                      
+                 </tr>
+                 <tr>
+                      <td><input type="radio" name="user_CheckBox" ></td>
+                      <td>2018.12.27</td>
+                      <td>2018.12.28</td>
+                      <td>SAKAMOTO</td>
+                      <td>Double</td>
+                      <td>Superior</td>
+                      <td>10777766660</td>
+                      <td>2</td>
+                      <td>Japan</td>                      
+                 </tr>                 
+               </tbody>   
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type= "button" class="btn btn-white" data-dismiss="modal">CLOSE</button>
+            <button type= "submit" class="btn btn-default">CHECK IN</button>
+        </div>
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modals --> 
+<!-- Start Footer -->
+<div class="row footer">
+  <div class="col-md-6 text-left">
+  Copyright &copy; 2016 <a href="#" target="_blank">ThemesGround</a> All rights reserved.
+  </div>
+  <div class="col-md-6 text-right">
+    Design and Developed by <a href="#" target="_blank">ThemesGround</a>
+  </div>
+</div>
+<!-- End Footer -->
+
+
+</div>
+<!-- End Content -->
+ <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+{% block addition %}{% endblock %}
+<!-- ================================================
+Bootstrap Select
+================================================ -->
+
+
+
+</body>
+</html>
