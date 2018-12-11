@@ -23,9 +23,11 @@
    <!-- Start Panel -->
    <div class="col-md-12">
      <div class="panel panel-default">
-      <form>
+      <form action="" method="post" role="form">
+          <input type="hidden" value="remove_task" name="button_type"></input>
        <div class="panel-title">
-         TASK LIST<button href="#" type="submit" style="float:right; margin-left: 10px;" class="btn"><i class="fa fa-trash"></i>Remove</button><a data-toggle="modal" data-target="#myModal" href="#" style ="float:right; " class="btn btn-option2"><i class="fa fa-plus"></i>Task</a>
+         TASK LIST
+         <button href="" type="submit" style="float:right; margin-left: 10px;" class="btn"><i class="fa fa-trash"></i>Remove</button><a data-toggle="modal" data-target="#myModal" href="#" style ="float:right; " class="btn btn-option2"><i class="fa fa-plus"></i>Task</a>
        </div>
        <div class="panel-body table-responsive">
 
@@ -53,23 +55,17 @@
                </tfoot>
 
                <tbody>
+                   {% for task in tasks %}
                    <tr>
-                       <td><input type="checkbox" name="user_CheckBox" ></td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">112</td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">이아델</td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">501호 청소</td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">2018/12/24 10:00</td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">O</td>
+                       <td><input type="checkbox" name="task_list" value="{{task.Task.id}}" ></td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal{{task.Task.id}}" style="cursor:pointer;">{{task.Employee.id}}</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal{{task.Task.id}}" style="cursor:pointer;">{{task.Employee.first_name}}</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal{{task.Task.id}}" style="cursor:pointer;">{{task.Task.description}}</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal{{task.Task.id}}" style="cursor:pointer;">{{task.Task.time}}</td>
+                       <td href="#" data-toggle="modal" data-target="#taskModal{{task.Task.id}}" style="cursor:pointer;">{{task.Task.done}}</td>
                    </tr>
-                   <tr>
-                       <td><input type="checkbox" name="user_CheckBox" ></td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">NULL</td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">NULL</td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">뷔페 100인분 준비</td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">2018/12/25 18:00</td>
-                       <td href="#" data-toggle="modal" data-target="#taskModal" style="cursor:pointer;">X</td>
-                   </tr>
-                   </tr>
+                   {% endfor %}
+
                </tbody>
            </table>
 

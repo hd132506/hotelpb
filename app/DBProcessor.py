@@ -42,6 +42,14 @@ def make_reservation():
     db.session.add(g)
     db.session.commit()
 
+def check_in_from_reservation(reserve_id, rnum):
+    r = Reserve.query.filter(Reserve.id == reserve_id).first()
+    g = Guest.query.filter(Guest.id == r.guest_id).first()
+    s = Stay(room_num=rnum, absence=False)
+    g.stay.append(s)
+    db.session.delete(r)
+    db.session.commit()
+
 def add_new_staff():
     # s = Employee(\
     #         first_name=,\

@@ -21,15 +21,32 @@
  <div class="row1">
  <div class="col-md-12">
  <div id="sum_box" class="mbl">
+                            {% for room in rooms%}
                            <div class="col-sm-6 col-md-3">
-                               <div class="panel profit db mbm">
-                                   <div class="panel-body" href="#" data-toggle="modal" data-target="#choutModal" style="cursor:pointer;">
-                                   <p class="description">Room 501</p>
-                                   <p style = "margin-left:20px;">이름 : 김감귤</p>
-                                   <p style = "margin-left:20px;">인원 : 2</p>
-                                   <p style = "margin-left:20px;">숙박 기간 : 2018/12/24 - 2018/12/25</p>
-                                   <p style = "margin-left:20px;">결제잔금 : 100,000원</p>
-                                   <p style = "margin-left:20px; margin-bottom:30px;">요청상황 : 없음</p>
+        {% if room.stay %}     <div class="panel profit db mbm">
+                                   <div class="panel-body" href="#" data-toggle="modal" data-target="#choutModal{{room.num}}" style="cursor:pointer;">
+        {% else %}             <div class="panel income db mbm">
+                                    <div class="panel-body" href="#" data-toggle="modal" data-target="#chinModal{{room.num}}" style="cursor:pointer;">
+        {% endif %}
+                                   <p class="description">Room {{room.num}}</p>
+                                   {% if room.stay %}
+                                        {% for s in stays %}
+                                        {% if room.stay.guest_id == s.Guest.id %}
+                                   <p style = "margin-left:20px;">이름 : {{s.Guest.first_name}} {{s.Guest.last_name}}</p>
+                                   <p style = "margin-left:20px;">인원 : {{s.Guest.head_cnt}}</p>
+                                   <p style = "margin-left:20px;">숙박 기간 : {{s.Guest.check_in_date}} ~ {{s.Guest.check_out_date}}</p>
+                                   <p style = "margin-left:20px;">마지막 청소시간 : 없음</p>
+                                   <p style = "margin-left:20px; margin-bottom:30px;">메시지 : 없음</p>
+                                            {% endif %}
+                                        {% endfor %}
+                                   {% else %}
+                                   <p style = "margin-left:20px;">이름 : </a></p>
+                                   <p style = "margin-left:20px;">인원 : </p>
+                                   <p style = "margin-left:20px;">숙박 기간 : </p>
+                                   <p style = "margin-left:20px;">사용가능 : {{room.usuable}}</p>
+                                   <p style = "margin-left:20px; margin-bottom:30px;">메시지 : </p>
+                                   {%endif%}
+
                                        <div class="progress progress-striped active mbn">
                                            <div role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
                                                style="width: 100%;" class="progress-bar progress-bar-success">
@@ -39,161 +56,8 @@
                                    </div>
                                </div>
                            </div>
-                           <div class="col-sm-6 col-md-3">
-                               <div class="panel income db mbm">
-                                   <div class="panel-body" href="#" data-toggle="modal" data-target="#chinModal" style="cursor:pointer;">
-                                   <p class="description">Room 502</p>
-                                   <p style = "margin-left:20px;">이름 : </a></p>
-                                   <p style = "margin-left:20px;">인원 : </p>
-                                   <p style = "margin-left:20px;">숙박 기간 : </p>
-                                   <p style = "margin-left:20px;">결제잔금 : </p>
-                                   <p style = "margin-left:20px; margin-bottom:30px;">요청상황 : </p>
-                                     <div class="progress progress-striped active mbn">
-                                           <div role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                               style="width: 0%;" class="progress-bar progress-bar-info">
-                                               <span class="sr-only">60% Complete (success)</span></div>
-                                       </div>
+                           {% endfor %}
 
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-sm-6 col-md-3">
-                               <div class="panel task db mbm">
-                                   <div class="panel-body">
-                                   <p class="description">Room 503</p>
-                                   <p style = "margin-left:20px;">이름 : 김감귤</p>
-                                   <p style = "margin-left:20px;">인원 : 2</p>
-                                   <p style = "margin-left:20px;">숙박 기간 : 2018/12/24 - 2018/12/25</p>
-                                   <p style = "margin-left:20px;">결제잔금 : 100,000원</p>
-                                   <p style = "margin-left:20px; margin-bottom:30px;">요청상황 : 없음</p>
-                                      <div class="progress  progress-striped active mbn">
-                                           <div role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-                                               style="width: 100%;" class="progress-bar progress-bar-danger">
-                                               <span class="sr-only">50% Complete (success)</span></div>
-                                       </div>
-
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-sm-6 col-md-3">
-                               <div class="panel visit db mbm">
-                                   <div class="panel-body">
-                                   <p class="description">Room 504</p>
-                                   <p style = "margin-left:20px;">이름 : </p>
-                                   <p style = "margin-left:20px;">인원 : </p>
-                                   <p style = "margin-left:20px;">숙박 기간 : </p>
-                                   <p style = "margin-left:20px;">결제잔금 : </p>
-                                   <p style = "margin-left:20px; margin-bottom:30px;">요청상황 : </p>
-                                        <div class="progress  progress-striped active mbn">
-                                           <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                                               style="width: 0%;" class="progress-bar progress-bar-warning">
-                                               <span class="sr-only">70% Complete (success)</span></div>
-                                       </div>
-
-                                   </div>
-                               </div>
-                           </div>
-
-
-
-                           <div class="col-sm-6 col-md-3">
-                               <div class="panel visit db mbm">
-                                   <div class="panel-body">
-                                   <p class="description">Room 401</p>
-                                   <p style = "margin-left:20px;">이름 : 김감귤</p>
-                                   <p style = "margin-left:20px;">인원 : 2</p>
-                                   <p style = "margin-left:20px;">숙박 기간 : 2018/12/24 - 2018/12/25</p>
-                                   <p style = "margin-left:20px;">결제잔금 : 100,000원</p>
-                                   <p style = "margin-left:20px; margin-bottom:30px;">요청상황 : 없음</p>
-                                        <div class="progress  progress-striped active mbn">
-                                           <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                                               style="width: 100%;" class="progress-bar progress-bar-danger">
-                                               <span class="sr-only">70% Complete (success)</span></div>
-                                       </div>
-
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-sm-6 col-md-3">
-                               <div class="panel visit db mbm">
-                                   <div class="panel-body">
-                                   <p class="description">Room 402</p>
-                                   <p style = "margin-left:20px;">이름 : 김감귤</p>
-                                   <p style = "margin-left:20px;">인원 : 2</p>
-                                   <p style = "margin-left:20px;">숙박 기간 : 2018/12/24 - 2018/12/25</p>
-                                   <p style = "margin-left:20px;">결제잔금 : 100,000원</p>
-                                   <p style = "margin-left:20px; margin-bottom:30px;">요청상황 : 없음</p>
-                                        <div class="progress  progress-striped active mbn">
-                                           <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                                               style="width: 100%;" class="progress-bar progress-bar-warning">
-                                               <span class="sr-only">70% Complete (success)</span></div>
-                                       </div>
-
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-sm-6 col-md-3">
-                               <div class="panel visit db mbm">
-                                   <div class="panel-body">
-                                   <p class="description">Room 403</p>
-                                   <p style = "margin-left:20px;">이름 : </p>
-                                   <p style = "margin-left:20px;">인원 : </p>
-                                   <p style = "margin-left:20px;">숙박 기간 : </p>
-                                   <p style = "margin-left:20px;">결제잔금 : </p>
-                                   <p style = "margin-left:20px; margin-bottom:30px;">요청상황 : </p>
-                                        <div class="progress  progress-striped active mbn">
-                                           <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                                               style="width: 0%;" class="progress-bar progress-bar-warning">
-                                               <span class="sr-only">70% Complete (success)</span></div>
-                                       </div>
-
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-sm-6 col-md-3">
-                               <div class="panel visit db mbm">
-                                   <div class="panel-body">
-                                   <p class="description">Room 404</p>
-                                   <p style = "margin-left:20px;">이름 : 김감귤</p>
-                                   <p style = "margin-left:20px;">인원 : 2</p>
-                                   <p style = "margin-left:20px;">숙박 기간 : 2018/12/24 - 2018/12/25</p>
-                                   <p style = "margin-left:20px;">결제잔금 : 100,000원</p>
-                                   <p style = "margin-left:20px; margin-bottom:30px;">요청상황 : 없음</p>
-                                        <div class="progress  progress-striped active mbn">
-                                           <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                                               style="width: 100%;" class="progress-bar progress-bar-warning">
-                                               <span class="sr-only">70% Complete (success)</span></div>
-                                       </div>
-
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-sm-6 col-md-3">
-                               <div class="panel visit db mbm">
-                                   <div class="panel-body">
-                                   <p class="description">Room 301</p>
-                                        <div class="progress  progress-striped active mbn">
-                                           <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                                               style="width: 0%;" class="progress-bar progress-bar-warning">
-                                               <span class="sr-only">70% Complete (success)</span></div>
-                                       </div>
-
-                                   </div>
-                               </div>
-                           </div>
-                           <div class="col-sm-6 col-md-3">
-                               <div class="panel visit db mbm">
-                                   <div class="panel-body">
-                                   <p class="description">Room 302</p>
-                                        <div class="progress  progress-striped active mbn">
-                                           <div role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-                                               style="width: 0%;" class="progress-bar progress-bar-warning">
-                                               <span class="sr-only">70% Complete (success)</span></div>
-                                       </div>
-
-                                   </div>
-                               </div>
-                           </div>
                        </div>
  </div>
 

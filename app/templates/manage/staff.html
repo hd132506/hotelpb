@@ -22,10 +22,13 @@
     <!-- Start Panel -->
     <div class="col-md-12">
       <div class="panel panel-default">
-        <form>
+        <form action="" method="post" role="form">
         <div class="panel-title">
-          STAFF LIST<button href="#" type="submit" style="float:right; margin-left: 10px;" class="btn"><i class="fa fa-trash"></i>Remove</button><a data-toggle="modal" data-target="#staffModal" href="#" style ="float:right;" class="btn btn-option2"><i class="fa fa-plus"></i>STAFF</a>
+          {% if current_user.job_id == 1 %} {# The Job ID of Manager #}
+          STAFF LIST<button href="" type="submit" style="float:right; margin-left: 10px;" class="btn"><i class="fa fa-trash"></i>Remove</button><a data-toggle="modal" data-target="#staffModal" href="#" style ="float:right;" class="btn btn-option2"><i class="fa fa-plus"></i>STAFF</a>
+          {% endif %}
         </div>
+        <input type="hidden" value="remove" name="request_type" />
         <div class="panel-body table-responsive">
 
             <table id="example0" class="table display">
@@ -54,39 +57,21 @@
                 </tfoot>
 
                 <tbody>
-                    <tr>
-                        <td><input type="checkbox" name="user_CheckBox" ></td>
-                        <td>112</td>
-                        <td>이아델</td>
-                        <td>청소부</td>
-                        <td>01022223333</td>
-                        <td>O</td>
-                        <td>English, Spanish</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" name="user_CheckBox" ></td>
-                        <td>921</td>
-                        <td>김쿡</td>
-                        <td>요리부</td>
-                        <td>01098765432</td>
-                        <td>X</td>
-                        <td>X</td>
-                    </tr>
                     {% for staff in staffs %}
                     <tr>
-                        <td><input type="checkbox" name="user_CheckBox" ></td>
-                        <td>{{ staff.id }}</td>
-                        <td>{{staff.first_name}} {{ staff.last_name }}</td>
-                        <td>{{ staff.job }}</td>
-                        <td>{{ staff.phone }}</td>
-                        <td>{% if staff.on_work %}
+                        <td><input type="checkbox" name="staffs" value="{{staff.Employee.id}}"></td>
+                        <td>{{ staff.Employee.id }}</td>
+                        <td>{{staff.Employee.first_name}} {{ staff.Employee.last_name }}</td>
+                        <td> {{staff.Job.desc}} </td>
+                        <td>{{ staff.Employee.phone }}</td>
+                        <td>{% if staff.Employee.on_work %}
                             O
                             {% else %}
                             X
                             {% endif %}
                         </td>
                         <td>
-                            {% for l in staff.languages %}
+                            {% for l in staff.Employee.language %}
                                 {{ l.lang }}
                                 {%- if not loop.last -%}, {% endif %}
                             {% endfor%}

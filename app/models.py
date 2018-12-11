@@ -18,12 +18,15 @@ class Employee(UserMixin, db.Model):
     job_id = db.Column(db.Integer, db.ForeignKey('job.id'))
     phone = db.Column(db.String(45))
     on_work = db.Column(db.Boolean, default=False)
-    languages = db.relationship('Language', secondary=languages, lazy='subquery',
-        backref=db.backref('employees'), cascade='all, delete-orphan', single_parent=True)
+    language = db.relationship('Language', secondary=languages, lazy='subquery',
+        backref=db.backref('employees'))
     work = db.relationship('Work', backref=db.backref('employee'), cascade='all, delete-orphan', single_parent=True)
     offduty = db.relationship('OffDuty', backref=db.backref('employee'), cascade='all, delete-orphan', single_parent=True)
+    tasks = db.relationship('Task', backref=db.backref('employee'), cascade='all, delete-orphan', single_parent=True)
+
     username = db.Column(db.String(32), index=True, nullable=False, unique=True)
     password_hash = db.Column(db.String(128))
+
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -58,8 +61,10 @@ class OffDuty(db.Model):
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'))
     description = db.Column(db.Text)
     time = db.Column(db.DateTime, default=datetime.utcnow)
+    done = db.Column(db.Boolean, default=False)
 
 @login.user_loader
 def load_user(id):

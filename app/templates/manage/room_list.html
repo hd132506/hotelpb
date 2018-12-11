@@ -45,11 +45,13 @@
                 </tfoot>
 
                 <tbody>
+                    {% for room in rooms%}
                     <tr>
-                        <td>502</td>
-                        <td>Double</td>
-                        <td>Superior</td>
+                        <td>{{room.num}}</td>
+                        <td>{{room.room_type}}</td>
+                        <td>{{room.room_class}}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 

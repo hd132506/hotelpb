@@ -79,13 +79,14 @@
 
   {% block content %}{% endblock %}
 <!-- Modals -->
-<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="Task" aria-hidden="true">
+{% for task in tasks %}
+<div class="modal fade" id="taskModal{{task.Task.id}}" tabindex="-1" role="dialog" aria-labelledby="Task" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Task Assignment</h4>
       </div>
-      <form>
+      <form action="" method="post" role="form">
       <div class="modal-body table-responsive">
         <table id="tasktable" class="table display">
           <thead>
@@ -101,26 +102,32 @@
           </thead>
 
           <tbody>
+            {% for staff in staffs %}
             <tr>
-                <td><input type="checkbox" name="user_CheckBox" ></td>
-                <td>112</td>
-                <td>이아델</td>
-                <td>청소부</td>
-                <td>01022223333</td>
-                <td>O</td>
-                <td>English, Spanish</td>
+                <td><input type="radio" name="staff" value="{{staff.Employee.id}}"></td>
+                <td>{{staff.Employee.id}}</td>
+                <td>{{staff.Employee.first_name}} {{staff.Employee.last_name}}</td>
+                <td>{{staff.Job.desc}}</td>
+                <td>{{ staff.Employee.phone }}</td>
+                <td>{% if staff.Employee.on_work %}
+                    O
+                    {% else %}
+                    X
+                    {% endif %}
+                </td>
+                <td>
+                    {% for l in staff.Employee.language %}
+                        {{ l.lang }}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor%}
+                </td>
             </tr>
-            <tr>
-                <td><input type="checkbox" name="user_CheckBox" ></td>
-                <td>921</td>
-                <td>김쿡</td>
-                <td>요리부</td>
-                <td>01098765432</td>
-                <td>X</td>
-                <td>X</td>
-            </tr>
+            {% endfor %}
+
            </tbody>
         </table>
+        <input type="hidden" value="assign_staff" name="modal_type"></input>
+        <input type="hidden" value="{{task.Task.id}}" name="task_id"></input>
 
       </div>
       <div class="modal-footer">
@@ -131,6 +138,7 @@
     </div>
   </div>
 </div>
+{% endfor %}
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="Taskmod" aria-hidden="true">
   <div class="modal-dialog modal-sm">
@@ -140,16 +148,17 @@
         <h4 class="modal-title">
           ADD TASK
         </h4>
-      </div>  
+      </div>
         <div class="modal-body">
-          <form>
+          <form action="" method="post" role="form">
             <div class="form-group">
-              <label for="input3"  class="form-label">TASK</label>
-                <input type="text" class="form-control" id="input3">
+              <label for="task"  class="form-label">TASK</label>
+                <input type="text" class="form-control" name="task">
+                <input type="hidden" value="add_task" name="modal_type" />
             </div>
         </div>
       <div class="modal-footer">
-        <center><button type="submit" class="btn btn-default">Submit</button></center>  
+        <center><button type="submit" class="btn btn-default">Submit</button></center>
       </div>
       </form>
     </div>
@@ -164,34 +173,34 @@
         <h4 class="modal-title">
           ADD STAFF
         </h4>
-      </div>  
+      </div>
         <div class="modal-body">
-          <form>
+          <form  action="" method="post" role="form">
 <!--             <div class="form-group">
               <label for="input1" class="form-label">E_ID</label>
                 <input type="text" class="form-control" id="input1">
             </div> -->
             <div class="form-group">
-              <label for="input2" class="form-label">NAME</label>
-                <input type="text" class="form-control" id="input2">
+              <label for="emp_fname" class="form-label">FIRST NAME</label>
+                <input type="text" class="form-control" name="emp_fname">
+            </div>
+            <div class="form-group">
+              <label for="emp_lname" class="form-label">LAST NAME</label>
+                <input type="text" class="form-control" name="emp_lname">
             </div>
             <div class="form-group">
               <label for="input3"  class="form-label">DEPARTMENT</label>
                 <div>
-                    <select class="selectpicker">
-                        <option>식음료부</option>
-                        <option>조리부</option>
-                        <option>객실부</option>
-                        <option>객실관리부</option>
-                        <option>사무직</option>
-                        <option>영업/판촉마케팅</option>
-                        <option>휘트니스클럽</option>                        
-                      </select>                  
+                    <select class="selectpicker" name="job">
+                        {% for job in jobs%}
+                        <option value="{{job.id}}">{{job.desc}}</option>
+                        {% endfor %}
+                      </select>
                 </div>
             </div>
             <div class="form-group">
-              <label for="input4" class="form-label">PHONE NUMBER</label>
-                <input type="text" class="form-control" id="input4">
+              <label for="phone" class="form-label">PHONE NUMBER</label>
+                <input type="text" class="form-control" name="phone">
             </div>
 <!--             <div class="form-group">
               <label for="input5" class="form-label">ON WORK</label>
@@ -199,23 +208,25 @@
             </div> -->
             <div class="form-group">
               <label for="input6" class="form-label">FOREIGN LANGUAGE</label>
-                    <select class="selectpicker" multiple>
-                        <option>Korean</option>
-                        <option>English</option>
-                        <option>Japanese</option>
-                        <option>Chinese</option>
-                        <option>Portuguese</option>
-                        <option>French</option>
-                        <option>German</option>
-                        <option>Russian</option>
-                        <option>Arabic</option>
-                        <option>Spanish</option>
-                        <option>Filipino</option>
-                        <option>Thai</option>                 
+                    <select class="selectpicker" name="langs" multiple>
+                        {% for lang in languages%}
+                        <option value="{{lang.id}}">{{lang.lang}}</option>
+                        {% endfor %}
                       </select>
             </div>
+
+            <div class="form-group">
+              <label for="username" class="form-label">USERNAME FOR MANAGEMENT PAGE</label>
+                <input type="text" class="form-control" name="username", placeholder="username">
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="form-label">PASSWORD</label>
+                <input type="password" class="form-control" name="password", placeholder="password">
+            </div>
+
         <div class="modal-footer">
-          <center><button type="submit" class="btn btn-default">Submit</button></center>  
+          <center><button type="submit" class="btn btn-default">Submit</button></center>
         </div>
         </form>
       </div>
@@ -231,9 +242,9 @@
         <h4 class="modal-title">
           ADD RESERVATION
         </h4>
-      </div>  
+      </div>
         <div class="modal-body">
-          <form>
+          <form action="" method="post" role="form">
             <div class="form-group">
               <label for="ipnum" class="form-label">NAME</label>
                 <input type="text" class="form-control" id="ipname">
@@ -245,7 +256,7 @@
                       <div class="controls">
                        <div class="input-prepend input-group" id="datepicker">
                          <span class="add-on input-group-addon"><i class="fa fa-calendar"></i></span>
-                         <input type="text" id="ipbirth" class="form-control" value="03/18/2015"/> 
+                         <input type="text" id="ipbirth" class="form-control" value="03/18/2015"/>
                         </div>
                       </div>
                     </div>
@@ -260,7 +271,7 @@
                     <div class="radio radio-inline">
                         <input type="radio" id="inlineRadio2" value="option1" name="radioInline">
                         <label for="inlineRadio2"> Female </label>
-                    </div>   
+                    </div>
             </div>
             <div class="form-group">
               <label for="ipnum" class="form-label">NUMBER</label>
@@ -465,7 +476,7 @@
                         <option>YEMEN</option>
                         <option>ZAMBIA</option>
                         <option>ZIMBABWE</option>
-                      </select>                  
+                      </select>
                   </div>
             </div>
             <div class="form-group">
@@ -475,7 +486,7 @@
                       <div class="controls">
                        <div class="input-prepend input-group">
                          <span class="add-on input-group-addon"><i class="fa fa-calendar"></i></span>
-                         <input type="text" id="ipchkout" class="form-control" value="03/18/2015"/> 
+                         <input type="text" id="ipchkout" class="form-control" value="03/18/2015"/>
                         </div>
                       </div>
                     </div>
@@ -497,7 +508,7 @@
                         <option>Double</option>
                         <option>Twin</option>
                         <option>Family</option>
-                      </select>                  
+                      </select>
                   </div>
             </div>
             <div class="form-group">
@@ -508,42 +519,52 @@
                         <option>Superior</option>
                         <option>Deluxe</option>
                         <option>Suite</option>
-                      </select>                  
+                      </select>
                   </div>
             </div>
         </div>
       <div class="modal-footer">
-        <center><button type="submit" class="btn btn-default">Submit</button></center>  
+        <center><button type="submit" class="btn btn-default">Submit</button></center>
       </div>
     </form>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="choutModal" tabindex="-1" role="dialog" aria-labelledby="Taskmod" aria-hidden="true">
+{% for room in rooms%}
+{%if room.stay %}
+{% for s in stays %}
+{% if room.stay.guest_id == s.Guest.id %}
+<div class="modal fade" id="choutModal{{room.num}}" tabindex="-1" role="dialog" aria-labelledby="Taskmod" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">
           CHECK OUT
         </h4>
-      </div>  
-        <form>
+      </div>
+        <form action="" method="post" role="form">
         <div class="modal-body">
             <div class="form-group">
               <label for="input1"  class="form-label">ROOM NO.</label>
-                <div>501</div>
+                <div>{{room.num}}</div>
             </div>
             <div class="form-group">
               <label for="input2"  class="form-label">NAME</label>
-                <div>김감귤</div>
+                <div>{{s.Guest.last_name}}</div>
             </div>
             <div class="form-group">
               <label for="input3"  class="form-label">ACCOMMODATION PERIOD</label>
-                <div>2018/12/24 - 2018/12/25</div>
+                <div>{{s.Guest.check_in_date}} - {{s.Guest.check_out_date}}</div>
+            </div>
+            <div class="form-group">
+                <input type="hidden" value="{{room.stay.guest_id}}" name="guest_id" />
+            </div>
+            <div class="form-group">
+                <input type="hidden" value="check_out" name="modal_type" />
             </div>
         </div>
-      <div class="modal-footer">  
+      <div class="modal-footer">
         <button type= "button" class="btn btn-white" data-dismiss="modal">CLOSE</button>
                 <button type= "submit" class="btn btn-default">CHECK OUT</button>
       </div>
@@ -551,18 +572,24 @@
     </div>
   </div>
 </div>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
 
-<div class="modal fade" id="chinModal" tabindex="-1" role="dialog" aria-labelledby="Taskmod" aria-hidden="true">
+{% for room in rooms %}
+{% if not room.stay %}
+<div class="modal fade" id="chinModal{{room.num}}" tabindex="-1" role="dialog" aria-labelledby="Taskmod" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">
           CHECK IN
         </h4>
-      </div>  
-        <form>
+      </div>
+        <form action="" method="post" role="form">
         <div class="modal-body">
-          
+
            <table class="table display">
                <thead>
                    <tr>
@@ -574,34 +601,29 @@
                        <th>ROOM CLASS</th>
                        <th>RESERVATION NO.</th>
                        <th>HEADCOUNT</th>
-                       <th>NATION</th>                               
+                       <th>NATION</th>
                    </tr>
                </thead>
                <tbody>
+                 {% for reserve in reserves %}
+                 {% if reserve.Reserve.room_info_id == room.room_info_id %}
                  <tr>
-                      <td><input type="radio" name="user_CheckBox" ></td>
-                      <td>2018.12.27</td>
-                      <td>2018.12.28</td>
-                      <td>SAKAMOTO</td>
+                      <td><input type="radio" value="{{reserve.Reserve.id}}" name="user_CheckBox" ></td>
+                      <td>{{reserve.Guest.check_in_date}}</td>
+                      <td>{{reserve.Guest.check_in_date}}</td>
+                      <td>{{reserve.Guest.first_name}} {{reserve.Guest.last_name}}</td>
                       <td>Double</td>
                       <td>Superior</td>
-                      <td>10777766660</td>
-                      <td>2</td>
-                      <td>Japan</td>                      
+                      <td>{{reserve.Reserve.id}}</td>
+                      <td>{{reserve.Guest.head_cnt}}</td>
+                      <td>Japan</td>
                  </tr>
-                 <tr>
-                      <td><input type="radio" name="user_CheckBox" ></td>
-                      <td>2018.12.27</td>
-                      <td>2018.12.28</td>
-                      <td>SAKAMOTO</td>
-                      <td>Double</td>
-                      <td>Superior</td>
-                      <td>10777766660</td>
-                      <td>2</td>
-                      <td>Japan</td>                      
-                 </tr>                 
-               </tbody>   
+                 {% endif %}
+                 {% endfor %}
+               </tbody>
             </table>
+            <input type="hidden" value="{{room.num}}" name="room_num" />
+            <input type="hidden" value="check_in" name="modal_type" />
         </div>
       <div class="modal-footer">
             <button type= "button" class="btn btn-white" data-dismiss="modal">CLOSE</button>
@@ -611,7 +633,9 @@
     </div>
   </div>
 </div>
-<!-- End Modals --> 
+{% endif %}
+{% endfor %}
+<!-- End Modals -->
 <!-- Start Footer -->
 <div class="row footer">
   <div class="col-md-6 text-left">
