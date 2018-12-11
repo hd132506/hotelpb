@@ -3,3 +3,4 @@ __pycache__/
 migrations/
 .flaskenv
 db_test.py
+dbtest.py
